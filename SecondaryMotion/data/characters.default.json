@@ -1,0 +1,185 @@
+{
+  "schema_version": 1,
+  "_comment": "Technical facts (maintainer-updated). Bones/axis/scale + recommended defaults. User presets override params only. Jump defaults OFF in V2.",
+
+  "characters": {
+    "chr_0014_aurora": {
+      "display_name": "Aurora",
+      "bones": { "right": "R_breast_01_jnt", "left": "L_breast_01_jnt", "allow_fallback_candidates": true },
+      "axis": { "name": "Z", "sign": 1.0 },
+      "bone_scale": 1.0,
+      "defaults": {
+        "gait": {
+          "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+          "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+          "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+          "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+        },
+        "envelope": {
+          "amplitude_attack_tau_sec": 0.15,
+          "frequency_tau_sec": 0.20,
+          "to_idle_release_tau_sec": 0.015
+        },
+        "jump": { "enabled": false, "mode": "off" },
+        "native_amplify": { "factor": 2.0 }
+      }
+    },
+
+    "chr_0017_yvonne": {
+      "display_name": "Yvonne",
+      "bones": { "right": "breast_R_01_jnt", "left": "breast_L_01_jnt", "allow_fallback_candidates": true },
+      "axis": { "name": "Z", "sign": 1.0 },
+      "bone_scale": 1.0,
+      "defaults": {
+        "gait": {
+          "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+          "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+          "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+          "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+        },
+        "envelope": {
+          "amplitude_attack_tau_sec": 0.15,
+          "frequency_tau_sec": 0.20,
+          "to_idle_release_tau_sec": 0.015
+        },
+        "jump": { "enabled": false, "mode": "off" },
+        "native_amplify": { "factor": 2.0 }
+      }
+    },
+
+    "chr_0031_mifu": {
+      "display_name": "Mifu",
+      "bones": { "right": "R_breast_01_jnt", "left": "L_breast_01_jnt", "allow_fallback_candidates": true },
+      "axis": { "name": "Z", "sign": 1.0 },
+      "bone_scale": 1.0,
+      "defaults": {
+        "gait": {
+          "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+          "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+          "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+          "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+        },
+        "envelope": {
+          "amplitude_attack_tau_sec": 0.15,
+          "frequency_tau_sec": 0.20,
+          "to_idle_release_tau_sec": 0.015
+        },
+        "jump": { "enabled": false, "mode": "off" },
+        "native_amplify": { "factor": 2.0 }
+      }
+    },
+
+    "chr_0003_endminf": {
+      "display_name": "Endminf",
+      "bones": { "right": "", "left": "", "allow_fallback_candidates": true },
+      "axis": { "name": "Y", "sign": 1.0 },
+      "bone_scale": 1.0,
+      "_comment": "bone_scale=1.0: xiong family 0.4 comes from the bone-name family automatically; this value is the EXTRA multiplier on top.",
+      "defaults": {
+        "gait": {
+          "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+          "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+          "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+          "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+        },
+        "envelope": {
+          "amplitude_attack_tau_sec": 0.15,
+          "frequency_tau_sec": 0.20,
+          "to_idle_release_tau_sec": 0.015
+        },
+        "jump": { "enabled": false, "mode": "off" },
+        "native_amplify": { "factor": 2.0 }
+      }
+    },
+
+    "chr_0030_zhuangfy": {
+      "display_name": "Zhuang Fangyi",
+      "bones": { "right": "xiong_R_0_skin_jnt", "left": "xiong_L_0_skin_jnt", "allow_fallback_candidates": true },
+      "axis": { "name": "Y", "sign": 1.0 },
+      "bone_scale": 1.0,
+      "_comment": "bone_scale=1.0: xiong family 0.4 automatic.",
+      "defaults": {
+        "gait": {
+          "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+          "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+          "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+          "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+        },
+        "envelope": {
+          "amplitude_attack_tau_sec": 0.15,
+          "frequency_tau_sec": 0.20,
+          "to_idle_release_tau_sec": 0.015
+        },
+        "jump": { "enabled": false, "mode": "off" },
+        "native_amplify": { "factor": 2.0 }
+      }
+    },
+
+    "chr_0016_laevat": {
+      "display_name": "Laevatain",
+      "bones": { "right": "xiong_R_0_skin_jnt", "left": "xiong_L_0_skin_jnt", "allow_fallback_candidates": true },
+      "axis": { "name": "Y", "sign": 1.0 },
+      "bone_scale": 1.0,
+      "_comment": "bone_scale=1.0: xiong family 0.4 automatic.",
+      "defaults": {
+        "gait": {
+          "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+          "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+          "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+          "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+        },
+        "envelope": {
+          "amplitude_attack_tau_sec": 0.15,
+          "frequency_tau_sec": 0.20,
+          "to_idle_release_tau_sec": 0.015
+        },
+        "jump": { "enabled": false, "mode": "off" },
+        "native_amplify": { "factor": 2.0 }
+      }
+    },
+
+    "chr_0004_pelica": {
+      "display_name": "Pelica",
+      "_comment": "Bone family unverified; axis omitted = auto (family from actual bone name).",
+      "bones": { "right": "", "left": "", "allow_fallback_candidates": true },
+      "bone_scale": 1.0,
+      "defaults": {
+        "gait": {
+          "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+          "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+          "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+          "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+        },
+        "envelope": {
+          "amplitude_attack_tau_sec": 0.15,
+          "frequency_tau_sec": 0.20,
+          "to_idle_release_tau_sec": 0.015
+        },
+        "jump": { "enabled": false, "mode": "off" },
+        "native_amplify": { "factor": 2.0 }
+      }
+    },
+
+    "chr_0005_chen": {
+      "display_name": "Chen",
+      "_comment": "Bone family unverified; axis omitted = auto.",
+      "bones": { "right": "", "left": "", "allow_fallback_candidates": true },
+      "bone_scale": 1.0,
+      "defaults": {
+        "gait": {
+          "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+          "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+          "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+          "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+        },
+        "envelope": {
+          "amplitude_attack_tau_sec": 0.15,
+          "frequency_tau_sec": 0.20,
+          "to_idle_release_tau_sec": 0.015
+        },
+        "jump": { "enabled": false, "mode": "off" },
+        "native_amplify": { "factor": 2.0 }
+      }
+    }
+  }
+}

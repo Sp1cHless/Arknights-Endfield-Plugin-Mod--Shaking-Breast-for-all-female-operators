@@ -1,0 +1,14 @@
+System.Windows.Markup.XamlParseException: 在“System.Windows.StaticResourceExtension”上提供值时引发了异常。
+ ---> System.Exception: 无法找到名为“TextFillColorPrimaryBrush”的资源。资源名称区分大小写。
+   at System.Windows.StaticResourceExtension.ProvideValueInternal(IServiceProvider serviceProvider, Boolean allowDeferredReference)
+   at MS.Internal.Xaml.Runtime.ClrObjectRuntime.CallProvideValue(MarkupExtension me, IServiceProvider serviceProvider)
+   --- End of inner exception stack trace ---
+   at System.Windows.Markup.XamlReader.RewrapException(Exception e, IXamlLineInfo lineInfo, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.Load(XamlReader xamlReader, IXamlObjectWriterFactory writerFactory, Boolean skipJournaledProperties, Object rootObject, XamlObjectWriterSettings settings, Uri baseUri)
+   at System.Windows.Markup.WpfXamlLoader.LoadBaml(XamlReader xamlReader, Boolean skipJournaledProperties, Object rootObject, XamlAccessLevel accessLevel, Uri baseUri)
+   at System.Windows.Markup.XamlReader.LoadBaml(Stream stream, ParserContext parserContext, Object parent, Boolean closeStream)
+   at System.Windows.Application.LoadComponent(Object component, Uri resourceLocator)
+   at SecondaryMotion.Manager.Pages.MainPage.InitializeComponent()
+   at SecondaryMotion.Manager.Pages.MainPage..ctor()
+   at SecondaryMotion.Manager.MainWindow..ctor()
+   at SecondaryMotion.Manager.App.OnStartup(StartupEventArgs e)

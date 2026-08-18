@@ -1,0 +1,15 @@
+{
+  "enabled": false,
+  "modules": {
+    "bone_scanner": false,
+    "clip_inspector": false,
+    "transform_recorder": false,
+    "axis_tester": false,
+    "hook_health": false
+  },
+  "axis_tester": {
+    "test_angle_deg": 10.0,
+    "axis": 2,
+    "sign": 1.0
+  }
+}

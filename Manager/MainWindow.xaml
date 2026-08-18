@@ -1,0 +1,92 @@
+﻿<Window x:Class="SecondaryMotion.Manager.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+        Title="ShakingBreast Manager"
+        Width="900" Height="640"
+        MinWidth="760" MinHeight="560"
+        Icon="Assets/AppIcon.ico"
+        WindowStartupLocation="CenterScreen">
+
+    <Window.Resources>
+        <!-- Lightweight navigation style: subtle selected background + accent bar -->
+        <Style x:Key="NavItemStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Foreground" Value="#171717" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="3,0,0,0" />
+            <Setter Property="Padding" Value="12,8" />
+            <Setter Property="Margin" Value="6,2" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="ItemBorder"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#F2F4F7" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#EAF2FA" />
+                                <Setter TargetName="ItemBorder" Property="BorderBrush" Value="{StaticResource AccentBrush}" />
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Opacity" Value="0.55" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#FAFAFB">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="180" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Always-visible side navigation -->
+        <Border Grid.Column="0"
+                Background="{StaticResource PaneBackgroundBrush}"
+                BorderBrush="{StaticResource DividerBrush}"
+                BorderThickness="0,0,1,0">
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" Margin="18,18,14,14">
+                    <TextBlock Text="ShakingBreast Manager"
+                               FontSize="14"
+                               FontWeight="SemiBold" />
+                    <TextBlock Text="By Sp1cHless"
+                               FontSize="10"
+                               Foreground="#8A8A8A"
+                               Margin="0,3,0,0" />
+                </StackPanel>
+
+                <ListBox x:Name="NavList"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         FontSize="13"
+                         SelectedIndex="0"
+                         ItemContainerStyle="{StaticResource NavItemStyle}">
+                    <ListBoxItem Content="Main" />
+                    <ListBoxItem Content="Characters" />
+                    <ListBoxItem Content="Presets" />
+                    <ListBoxItem Content="Developer" />
+                </ListBox>
+            </DockPanel>
+        </Border>
+
+        <Frame x:Name="ContentFrame"
+               Grid.Column="1"
+               Background="#FAFAFB"
+               NavigationUIVisibility="Hidden" />
+    </Grid>
+</Window>

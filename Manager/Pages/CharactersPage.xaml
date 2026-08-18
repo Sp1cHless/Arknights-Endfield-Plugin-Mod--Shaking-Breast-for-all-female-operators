@@ -1,0 +1,473 @@
+﻿<Page x:Class="SecondaryMotion.Manager.Pages.CharactersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="Characters"
+      Loaded="OnLoaded"
+      Unloaded="OnUnloaded">
+
+    <Page.Resources>
+        <SolidColorBrush x:Key="CardBorderBrush" Color="#E4E7EB" />
+        <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="MutedBrush" Color="#7A7A7A" />
+        <SolidColorBrush x:Key="SoftFillBrush" Color="#F4F6F8" />
+
+        <!-- Compact card -->
+        <Style x:Key="CardStyle" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource CardBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+
+        <Style x:Key="CompactLabel" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#222222" />
+        </Style>
+
+        <Style x:Key="SectionHintStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="8,1,0,0" />
+        </Style>
+
+        <!-- Simple list item: no accent strip -->
+        <Style x:Key="CharacterListItemStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Foreground" Value="#1B1B1B" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="Margin" Value="0,1" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="ItemBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#F2F4F7" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#EAF2FA" />
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#FAFAFB" Margin="14,12,18,14">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Character list -->
+        <Border Grid.Column="0"
+                Style="{StaticResource CardStyle}">
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="Characters"
+                                   FontSize="18"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="Select a character to edit"
+                                   Foreground="{StaticResource MutedBrush}"
+                                   FontSize="9"
+                                   Margin="0,2,0,0" />
+                    </StackPanel>
+
+                    <Button Grid.Column="1"
+                            Content="Refresh"
+                            MinWidth="62"
+                            Height="26"
+                            FontSize="10"
+                            Margin="8,0,0,0"
+                            Command="{Binding RefreshCommand}" />
+                </Grid>
+
+                <ListBox ItemsSource="{Binding Items}"
+                         SelectedItem="{Binding Selected}"
+                         DisplayMemberPath="Display"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         ItemContainerStyle="{StaticResource CharacterListItemStyle}" />
+            </DockPanel>
+        </Border>
+
+        <!-- Editor -->
+        <ScrollViewer Grid.Column="2"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel MaxWidth="570"
+                        HorizontalAlignment="Left">
+
+                <TextBlock Text="{Binding Selected.Display,
+                                          TargetNullValue=Select a character,
+                                          FallbackValue=Select a character}"
+                           FontSize="20"
+                           FontWeight="SemiBold" />
+                <TextBlock Text="Character-specific motion settings"
+                           Foreground="{StaticResource MutedBrush}"
+                           FontSize="9"
+                           Margin="0,2,0,0" />
+
+                <!-- Basic -->
+                <Border Style="{StaticResource CardStyle}"
+                        Margin="0,8,0,0"
+                        IsEnabled="{Binding HasSelection}">
+                    <StackPanel>
+                        <TextBlock Text="Basic"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,8" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="125" />
+                                <ColumnDefinition Width="195" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="Display name"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="0" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     Text="{Binding Selected.DisplayName,
+                                                    Mode=TwoWay,
+                                                    UpdateSourceTrigger=PropertyChanged}" />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="Enabled"
+                                       Style="{StaticResource CompactLabel}" />
+                            <CheckBox Grid.Row="1" Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Selected.Enabled}" />
+
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="Mode"
+                                       Style="{StaticResource CompactLabel}" />
+                            <ComboBox Grid.Row="2" Grid.Column="1"
+                                      Height="26"
+                                      FontSize="10"
+                                      SelectedIndex="{Binding Selected.ModeIndex}">
+                                <ComboBoxItem Content="Original (off)" />
+                                <ComboBoxItem Content="Synthetic" />
+                                <ComboBoxItem Content="Amplify Native" />
+                            </ComboBox>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0"
+                                       Text="ID (dev)"
+                                       Style="{StaticResource CompactLabel}" />
+                            <Border Grid.Row="3" Grid.Column="1"
+                                    Background="{StaticResource SoftFillBrush}"
+                                    CornerRadius="4"
+                                    Padding="7,3">
+                                <TextBlock Text="{Binding Selected.Data.Id}"
+                                           Foreground="{StaticResource MutedBrush}"
+                                           FontSize="10"
+                                           VerticalAlignment="Center" />
+                            </Border>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0"
+                                       Text="Amplitude scale"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="4" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.AmpScale,
+                                                    Mode=TwoWay,
+                                                    Converter={StaticResource DoubleToText}}" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Gait -->
+                <Border Style="{StaticResource CardStyle}"
+                        Margin="0,8,0,0"
+                        IsEnabled="{Binding HasSelection}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="Gait"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource AccentBrush}" />
+                            <TextBlock Text="Edit Motion data."
+                                       Style="{StaticResource SectionHintStyle}" />
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="52" />
+                                <ColumnDefinition Width="118" />
+                                <ColumnDefinition Width="118" />
+                                <ColumnDefinition Width="118" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="22" />
+                                <RowDefinition Height="32" />
+                                <RowDefinition Height="32" />
+                                <RowDefinition Height="32" />
+                            <RowDefinition Height="22" />
+</Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="Up (deg)"
+                                       Foreground="{StaticResource MutedBrush}"
+                                       FontSize="9"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="2"
+                                       Text="Down (deg)"
+                                       Foreground="{StaticResource MutedBrush}"
+                                       FontSize="9"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="3"
+                                       Text="Frequency (Hz)"
+                                       Foreground="{StaticResource MutedBrush}"
+                                       FontSize="9"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="Walk"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="1" Grid.Column="1"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.WalkDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="1" Grid.Column="2"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.WalkAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="1" Grid.Column="3"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.WalkFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="Run"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="2" Grid.Column="1"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.RunDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="2" Grid.Column="2"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.RunAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="2" Grid.Column="3"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.RunFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <TextBlock Grid.Row="3" Grid.Column="0"
+                                       Text="Sprint"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="3" Grid.Column="1"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.SprintDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="3" Grid.Column="2"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.SprintAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="3" Grid.Column="3"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.SprintFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                        <TextBox Grid.Row="4" Grid.Column="1"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.ZiplineAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
+                        <TextBox Grid.Row="4" Grid.Column="2"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.ZiplineDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
+                        <TextBox Grid.Row="4" Grid.Column="3"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.ZiplineFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Advanced -->
+                <Border Style="{StaticResource CardStyle}"
+                        Margin="0,8,0,0"
+                        IsEnabled="{Binding HasSelection}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                            <TextBlock Text="Advanced"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource AccentBrush}" />
+                            <TextBlock Text="Usually Dont Touch"
+                                       Style="{StaticResource SectionHintStyle}" />
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="135" />
+                                <ColumnDefinition Width="195" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="Axis"
+                                       Style="{StaticResource CompactLabel}" />
+                            <ComboBox Grid.Row="0" Grid.Column="1"
+                                      Height="26"
+                                      FontSize="10"
+                                      SelectedIndex="{Binding Selected.AxisIndex}">
+                                <ComboBoxItem Content="Auto" />
+                                <ComboBoxItem Content="X" />
+                                <ComboBoxItem Content="Y" />
+                                <ComboBoxItem Content="Z" />
+                            </ComboBox>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="Direction"
+                                       Style="{StaticResource CompactLabel}" />
+                            <ComboBox Grid.Row="1" Grid.Column="1"
+                                      Height="26"
+                                      FontSize="10"
+                                      SelectedIndex="{Binding Selected.SignIndex}">
+                                <ComboBoxItem Content="+" />
+                                <ComboBoxItem Content="-" />
+                            </ComboBox>
+
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="Env attack tau"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="2" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.EnvAttack, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <TextBlock Grid.Row="3" Grid.Column="0"
+                                       Text="Env freq tau"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="3" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.EnvFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <TextBlock Grid.Row="4" Grid.Column="0"
+                                       Text="Env to-idle tau"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="4" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.EnvIdle, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <TextBlock Grid.Row="5" Grid.Column="0"
+                                       Text="Native amplify"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="5" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.NativeFactor, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                        </Grid>
+
+                        <CheckBox Content="Jump (legacy landing damped)"
+                                  Margin="0,7,0,0"
+                                  FontSize="10"
+                                  Foreground="Black"
+                                  IsChecked="{Binding Selected.JumpEnabled}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Actions -->
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,2"
+                            IsEnabled="{Binding HasSelection}">
+                    <Button Content="Apply"
+                            Width="108"
+                            Height="28"
+                            FontSize="10"
+                            Command="{Binding ApplyCommand}" />
+                    <Button Content="Delete from preset"
+                            Width="126"
+                            Height="28"
+                            FontSize="10"
+                            Margin="7,0,0,0"
+                            Command="{Binding DeleteCommand}" />
+                    <TextBlock Text="{Binding ApplyMessage}"
+                               VerticalAlignment="Center"
+                               FontSize="10"
+                               Margin="10,0,0,0"
+                               Foreground="{StaticResource AccentBrush}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

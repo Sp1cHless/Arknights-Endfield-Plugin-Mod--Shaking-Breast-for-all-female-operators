@@ -1,0 +1,159 @@
+{
+  "schema_version": 1,
+  "name": "Default",
+  "_comment": "User preset (params only; bones/axis come from characters.default.json). Every character lists its full parameters so tuning is direct. Change values, then bump runtime/config.json revision to hot-apply.",
+
+  "characters": {
+    "chr_0014_aurora": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "amplitude_scale": 1.0,
+      "gait": {
+        "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+        "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+        "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+        "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+      },
+      "envelope": {
+        "amplitude_attack_tau_sec": 0.15,
+        "frequency_tau_sec": 0.20,
+        "to_idle_release_tau_sec": 0.015
+      },
+      "jump": { "enabled": false, "mode": "off" },
+      "native_amplify": { "factor": 2.0 }
+    },
+
+    "chr_0017_yvonne": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "amplitude_scale": 1.0,
+      "gait": {
+        "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+        "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+        "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+        "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+      },
+      "envelope": {
+        "amplitude_attack_tau_sec": 0.15,
+        "frequency_tau_sec": 0.20,
+        "to_idle_release_tau_sec": 0.015
+      },
+      "jump": { "enabled": false, "mode": "off" },
+      "native_amplify": { "factor": 2.0 }
+    },
+
+    "chr_0031_mifu": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "amplitude_scale": 1.0,
+      "gait": {
+        "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+        "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+        "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+        "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+      },
+      "envelope": {
+        "amplitude_attack_tau_sec": 0.15,
+        "frequency_tau_sec": 0.20,
+        "to_idle_release_tau_sec": 0.015
+      },
+      "jump": { "enabled": false, "mode": "off" },
+      "native_amplify": { "factor": 2.0 }
+    },
+
+    "chr_0003_endminf": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "amplitude_scale": 1.0,
+      "gait": {
+        "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+        "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+        "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+        "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+      },
+      "envelope": {
+        "amplitude_attack_tau_sec": 0.15,
+        "frequency_tau_sec": 0.20,
+        "to_idle_release_tau_sec": 0.015
+      },
+      "jump": { "enabled": false, "mode": "off" },
+      "native_amplify": { "factor": 2.0 }
+    },
+
+    "chr_0030_zhuangfy": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "amplitude_scale": 1.0,
+      "gait": {
+        "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+        "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+        "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+        "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+      },
+      "envelope": {
+        "amplitude_attack_tau_sec": 0.15,
+        "frequency_tau_sec": 0.20,
+        "to_idle_release_tau_sec": 0.015
+      },
+      "jump": { "enabled": false, "mode": "off" },
+      "native_amplify": { "factor": 2.0 }
+    },
+
+    "chr_0016_laevat": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "amplitude_scale": 1.0,
+      "gait": {
+        "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+        "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+        "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+        "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+      },
+      "envelope": {
+        "amplitude_attack_tau_sec": 0.15,
+        "frequency_tau_sec": 0.20,
+        "to_idle_release_tau_sec": 0.015
+      },
+      "jump": { "enabled": false, "mode": "off" },
+      "native_amplify": { "factor": 2.0 }
+    },
+
+    "chr_0004_pelica": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "amplitude_scale": 1.0,
+      "gait": {
+        "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+        "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+        "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+        "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+      },
+      "envelope": {
+        "amplitude_attack_tau_sec": 0.15,
+        "frequency_tau_sec": 0.20,
+        "to_idle_release_tau_sec": 0.015
+      },
+      "jump": { "enabled": false, "mode": "off" },
+      "native_amplify": { "factor": 2.0 }
+    },
+
+    "chr_0005_chen": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "amplitude_scale": 1.0,
+      "gait": {
+        "idle":   { "amplitude_deg": 0.0,  "frequency_hz": 1.2 },
+        "walk":   { "amplitude_deg": 3.6,  "frequency_hz": 1.5 },
+        "run":    { "amplitude_deg": 8.5,  "frequency_hz": 1.7 },
+        "sprint": { "amplitude_deg": 12.0, "frequency_hz": 2.0 }
+      },
+      "envelope": {
+        "amplitude_attack_tau_sec": 0.15,
+        "frequency_tau_sec": 0.20,
+        "to_idle_release_tau_sec": 0.015
+      },
+      "jump": { "enabled": false, "mode": "off" },
+      "native_amplify": { "factor": 2.0 }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+[1/4] Backing up current active DLL...
+  backup: E:\GAMU\Hypergryph Launcher\games\Endfield Game\plugin\eiem.dll.v2_norm2
+[2/4] Copying new build...
+[3/4] Initializing SecondaryMotion data...
+[4/4] Hashing...
+
+==========================================
+  Deployed. Verify hashes:
+==========================================
+SHA256 的 bin\eiem.dll 哈希:
+b2e8c0afd45e6ef6f5cf88baf87bd8233d7c3d6cc084337ef8b559633e1bb3a4
+SHA256 的 E:\GAMU\Hypergryph Launcher\games\Endfield Game\plugin\eiem.dll 哈希:
+b2e8c0afd45e6ef6f5cf88baf87bd8233d7c3d6cc084337ef8b559633e1bb3a4
+
+REMEMBER: game must be EXITED before deploying (eiem.dll is locked).
+
+请按任意键继续. . . 
