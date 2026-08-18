@@ -1,7 +1,7 @@
 @echo off
 rem ==========================================
 rem   Secondary Motion Tool Build Script
-rem   (EIEM-compatible eiem.dll, proxy loaders)
+rem   (Secondary Motion plugin entry point)
 rem ==========================================
 setlocal enabledelayedexpansion
 
@@ -35,10 +35,10 @@ if not exist bin mkdir bin
 echo [1/4] Compiling version resource ...
 rc /nologo /fo bin\version.res src\version.rc
 
-echo [2/4] Building eiem.dll ...
+echo [2/4] Building sbm.dll ...
 cl /nologo /utf-8 /O2 /MD /LD /EHsc /std:c++17 ^
     /Ideps\minhook_lib\include ^
-    src\eiem.cpp ^
+    src\sbm.cpp ^
     bin\version.res ^
     deps\minhook_lib\lib\libMinHook.x64.lib ^
     user32.lib ^
@@ -50,14 +50,14 @@ cl /nologo /utf-8 /O2 /MD /LD /EHsc /std:c++17 ^
     dwmapi.lib ^
     ole32.lib ^
     winhttp.lib ^
-    /Fe"bin\eiem.dll" ^
+    /Fe"bin\sbm.dll" ^
     /link /DLL
 
 if %errorlevel% neq 0 (
-    echo [ERROR] eiem.dll build failed!
+    echo [ERROR] sbm.dll build failed!
     exit /b 1
 )
-echo [OK] eiem.dll built successfully
+echo [OK] sbm.dll built successfully
 
 echo [3/4] Building d3dcompiler_47.dll (proxy loader) ...
 cl /nologo /O2 /MD /LD /EHsc /std:c++17 ^
@@ -79,11 +79,11 @@ if %errorlevel% neq 0 (
     exit /b 1
 )
 
-del /q eiem.obj 2>nul
+del /q sbm.obj 2>nul
 del /q proxy_d3dcompiler.obj 2>nul
 del /q proxy_vulkan_full.obj 2>nul
-del /q bin\eiem.exp 2>nul
-del /q bin\eiem.lib 2>nul
+del /q bin\sbm.exp 2>nul
+del /q bin\sbm.lib 2>nul
 del /q bin\d3dcompiler_47.exp 2>nul
 del /q bin\d3dcompiler_47.lib 2>nul
 del /q bin\vulkan-1.exp 2>nul
@@ -93,6 +93,6 @@ echo ==========================================
 echo   Build Complete!
 echo ==========================================
 echo Output files in bin\:
-echo   - eiem.dll               (secondary motion plugin)
+echo   - sbm.dll               (secondary motion plugin)
 echo   - d3dcompiler_47.dll     (DX proxy loader)
 echo   - vulkan-1.dll           (Vulkan proxy loader)

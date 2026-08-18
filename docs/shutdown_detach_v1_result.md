@@ -11,7 +11,7 @@
 | source: il2cpp_api.h | ebb776d30ecec0e3 |
 | built DLL | 1e20f673f610c1948e8e250b681d6d9de6e36a0082a1e52675967e2e01aa57dd |
 | deployed DLL | 1e20f673…（与 built 一致） |
-| 上一版备份 | plugin/eiem.dll.shutdown_detach_v1 |
+| 上一版备份 | plugin/sbm.dll.shutdown_detach_v1 |
 
 ## 实验内容
 

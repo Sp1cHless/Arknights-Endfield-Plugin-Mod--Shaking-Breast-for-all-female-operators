@@ -27,6 +27,19 @@
             <Setter Property="Margin" Value="10,1,0,0" />
         </Style>
 
+        <Style x:Key="AdvancedParamTitle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#222222" />
+        </Style>
+
+        <Style x:Key="AdvancedParamHint" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="0,2,8,0" />
+        </Style>
+
         <Style x:Key="StatusValueStyle" TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="TextWrapping" Value="Wrap" />
@@ -175,7 +188,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                         <TextBlock Text="Gait"
                                    Style="{StaticResource SectionTitle}" />
-                        <TextBlock Text="Edit Motion data."
+                        <TextBlock Text="Edit Motion data, please adjust different values for each motion."
                                    Style="{StaticResource SectionHintStyle}" />
                     </StackPanel>
 
@@ -191,7 +204,7 @@
                             <RowDefinition Height="40" />
                             <RowDefinition Height="40" />
                             <RowDefinition Height="40" />
-                        <RowDefinition Height="28" />
+                            <RowDefinition Height="40" />
 </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="1"
@@ -298,23 +311,23 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                         <TextBlock Text="Advanced"
                                    Style="{StaticResource SectionTitle}" />
-                        <TextBlock Text="Usually Dont Touch"
+                        <TextBlock Text="Usually Don't Touch"
                                    Style="{StaticResource SectionHintStyle}" />
                     </StackPanel>
 
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="170" />
-                            <ColumnDefinition Width="240" />
+                            <ColumnDefinition Width="310" />
+                            <ColumnDefinition Width="180" />
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <Grid.RowDefinitions>
                             <RowDefinition Height="38" />
                             <RowDefinition Height="38" />
                             <RowDefinition Height="38" />
-                            <RowDefinition Height="38" />
-                            <RowDefinition Height="38" />
-                            <RowDefinition Height="38" />
+                            <RowDefinition Height="52" />
+                            <RowDefinition Height="52" />
+                            <RowDefinition Height="58" />
                             <RowDefinition Height="38" />
                         </Grid.RowDefinitions>
 
@@ -349,31 +362,55 @@
                             <ComboBoxItem Content="-" />
                         </ComboBox>
 
-                        <TextBlock Grid.Row="3" Grid.Column="0"
-                                   Text="Env attack tau"
-                                   Style="{StaticResource FieldLabel}" />
+                        <!-- Env attack tau -->
+                        <StackPanel Grid.Row="3" Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    ToolTip="Env attack tau — smooths amplitude across gait/state transitions, including run→walk and zipline transitions.">
+                            <TextBlock Text="Transition smoothing"
+                                       Style="{StaticResource AdvancedParamTitle}" />
+                            <TextBlock Text="Higher = smoother transitions · Lower = more responsive"
+                                       Style="{StaticResource AdvancedParamHint}" />
+                        </StackPanel>
                         <TextBox Grid.Row="3" Grid.Column="1"
                                  Height="30"
+                                 VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
+                                 ToolTip="Env attack tau"
                                  Text="{Binding Current.EnvAttack, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
-                        <TextBlock Grid.Row="4" Grid.Column="0"
-                                   Text="Env freq tau"
-                                   Style="{StaticResource FieldLabel}" />
+                        <!-- Env freq tau -->
+                        <StackPanel Grid.Row="4" Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    ToolTip="Env freq tau — smooths changes in motion frequency.">
+                            <TextBlock Text="Frequency smoothing"
+                                       Style="{StaticResource AdvancedParamTitle}" />
+                            <TextBlock Text="Higher = slower frequency changes · Lower = quicker response"
+                                       Style="{StaticResource AdvancedParamHint}" />
+                        </StackPanel>
                         <TextBox Grid.Row="4" Grid.Column="1"
                                  Height="30"
+                                 VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
+                                 ToolTip="Env freq tau"
                                  Text="{Binding Current.EnvFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
-                        <TextBlock Grid.Row="5" Grid.Column="0"
-                                   Text="Env to-idle tau"
-                                   Style="{StaticResource FieldLabel}" />
+                        <!-- Env to-idle tau -->
+                        <StackPanel Grid.Row="5" Grid.Column="0"
+                                    VerticalAlignment="Center"
+                                    ToolTip="Env to-idle tau — dedicated stop/tail smoothing. Triggered when the clip name contains &quot;stop&quot; or &quot;_to_idle&quot;.">
+                            <TextBlock Text="Stop smoothing"
+                                       Style="{StaticResource AdvancedParamTitle}" />
+                            <TextBlock Text="Stop / to-idle only · Higher = gentler stop · Lower = sharper stop"
+                                       Style="{StaticResource AdvancedParamHint}" />
+                        </StackPanel>
                         <TextBox Grid.Row="5" Grid.Column="1"
                                  Height="30"
+                                 VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
+                                 ToolTip="Env to-idle tau — clips containing &quot;stop&quot; or &quot;_to_idle&quot;"
                                  Text="{Binding Current.EnvIdle, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                         <TextBlock Grid.Row="6" Grid.Column="0"

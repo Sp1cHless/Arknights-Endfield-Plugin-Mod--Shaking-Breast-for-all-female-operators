@@ -176,6 +176,31 @@ public class CharacterDatabaseService {
         PresetService.AtomicWrite(_path, sb.ToString());
     }
 
+    // Remove one character entirely from the DB (back to "unknown" so the
+    // Developer wizard can re-scan and re-record it).  Backup + atomic write.
+    public void DeleteCharacter(string id) {
+        Dictionary<string, object> root;
+        if (!File.Exists(_path)) return;
+        if (!JsonMini.ParseTopLevel(File.ReadAllText(_path, Encoding.UTF8), out root))
+            return;
+        if (!root.ContainsKey("characters")) return;
+        var chars = (Dictionary<string, object>)root["characters"];
+        if (!chars.ContainsKey(id)) return;
+        chars.Remove(id);
+        var sb = new StringBuilder();
+        sb.Append("{\r\n  \"schema_version\": 1,\r\n  \"characters\": {\r\n");
+        int i2 = 0;
+        foreach (var kv in chars) {
+            sb.Append("    ").Append(JsonMini.Str(kv.Key)).Append(": ")
+              .Append(WriteEntry((Dictionary<string, object>)kv.Value))
+              .Append(i2 < chars.Count - 1 ? "," : "").Append("\r\n");
+            i2++;
+        }
+        sb.Append("  }\r\n}\r\n");
+        File.Copy(_path, _path + ".bak", true);
+        PresetService.AtomicWrite(_path, sb.ToString());
+    }
+
     static string WriteEntry(Dictionary<string, object> e) {
         var sb = new StringBuilder();
         sb.Append("{\r\n      \"display_name\": ").Append(JsonMini.Str((string)e["display_name"])).Append(",\r\n");

@@ -1,5 +1,6 @@
 #define _CRT_SECURE_NO_WARNINGS
-// eiem.cpp — EIEM-compatible plugin entry.  This build contains ONLY the
+// sbm.cpp — Secondary Motion plugin entry (renamed from eiem; the old
+// name was EIEM-framework compatible).  This build contains ONLY the
 // secondary-motion tool (architecture spec v1.0); the MMD/GUI features of
 // the upstream EIEM are not part of this project.
 #include <windows.h>

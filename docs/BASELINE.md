@@ -2,7 +2,7 @@
 
 ## 基线身份
 
-- **active = `c73660fb`** = 部署中 `bin/eiem.dll` 的 SHA-256 前 8 位
+- **active = `c73660fb`** = 部署中 `bin/sbm.dll` 的 SHA-256 前 8 位
 - 源码位置：`E:\ShakerMOD\breast-probe\`（git commit `851533b` + 未提交改动，与基线部署一致）
 - 备份目录：`E:\ShakerMOD\breast-probe-backup-20260816-5461fe6a\`
 
@@ -11,11 +11,11 @@
 | 文件 | SHA-256 |
 |---|---|
 | src/breast_probe.h | 260e21972068ecdc876b664ab1c55c97c74da7aca518aab0d3924db71bb4ac65 |
-| src/eiem.cpp | 598a8c83b6b223324dcf796ae07300929fe631fe31bc3910367a8a56a2834755 |
+| src/sbm.cpp | 598a8c83b6b223324dcf796ae07300929fe631fe31bc3910367a8a56a2834755 |
 | src/animation.h | 9864869a5b43b7a490d61bad2b274a12ba05e607687a27e6c624e0765585ec95 |
 | src/globals.h | df9470b92e37f4541b8a859859f26594f0e1cca6ba99a0455e7a8d74ae678bba |
 | src/il2cpp_api.h | 40497a53e80586bb81219fa9ff8dcb5de678e22259e9dbda170117b1bd44891e |
-| bin/eiem.dll | c73660fb305966f0e805b5ef8e99cc3f041c20f5a281ee56c7f9d6b7758fb5dc |
+| bin/sbm.dll | c73660fb305966f0e805b5ef8e99cc3f041c20f5a281ee56c7f9d6b7758fb5dc |
 
 ## 基线行为摘要（必须保持）
 
@@ -32,6 +32,6 @@
 
 ## 部署链
 
-- 构建：`run_build.bat` → `bin/eiem.dll`（+ d3dcompiler_47.dll / vulkan-1.dll proxy）
-- 部署：游戏退出 → 备份 `plugin/eiem.dll.pre_*` → 覆盖 → 启动游戏
+- 构建：`run_build.bat` → `bin/sbm.dll`（+ d3dcompiler_47.dll / vulkan-1.dll proxy）
+- 部署：游戏退出 → 备份 `plugin/sbm.dll.pre_*` → 覆盖 → 启动游戏
 - 日志：`plugin/breast_probe_log.txt`（[GAIT]/[PRE]/[JUMP]/[SWITCH]/[SYNC-CALL]/[V19]/[MARKER] 等）

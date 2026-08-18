@@ -1,5 +1,5 @@
 #pragma once
-// common/logger.h — two log sinks: plugin/eiem_log.txt (general) and
+// common/logger.h — two log sinks: plugin/sbm_log.txt (general) and
 // plugin/breast_probe_log.txt (secondary-motion).  Never called from hot
 // animation callbacks except rate-limited diagnostics.
 #include <windows.h>
@@ -11,7 +11,7 @@ static CRITICAL_SECTION g_logLock;
 
 static bool LogInit() {
   InitializeCriticalSection(&g_logLock);
-  g_logHandle = CreateFileA("plugin\\eiem_log.txt", GENERIC_WRITE, FILE_SHARE_READ,
+  g_logHandle = CreateFileA("plugin\\sbm_log.txt", GENERIC_WRITE, FILE_SHARE_READ,
                             NULL, CREATE_ALWAYS, FILE_ATTRIBUTE_NORMAL, NULL);
   return g_logHandle != INVALID_HANDLE_VALUE;
 }

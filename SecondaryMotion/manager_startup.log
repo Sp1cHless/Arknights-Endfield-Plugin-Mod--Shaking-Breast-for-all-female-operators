@@ -3,6 +3,6 @@ settings.game_data_dir: E:\GAMU\Hypergryph Launcher\games\Endfield Game\Secondar
 data_root: E:\GAMU\Hypergryph Launcher\games\Endfield Game\SecondaryMotion
 status_path: E:\GAMU\Hypergryph Launcher\games\Endfield Game\SecondaryMotion\runtime\runtime_status.json
 status_exists: True
-status_age_s: 234.3
-chars_loaded: 9
-preset: Default rev=86
+status_age_s: 1005.2
+chars_loaded: 19
+preset: Default rev=147

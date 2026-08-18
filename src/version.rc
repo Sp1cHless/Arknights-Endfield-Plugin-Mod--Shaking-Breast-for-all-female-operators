@@ -22,8 +22,8 @@ BEGIN
         BEGIN
             VALUE "FileDescription", "Endfield Secondary Motion Tool v1"
             VALUE "FileVersion", SM_VERSION ".0"
-            VALUE "InternalName", "eiem"
-            VALUE "OriginalFilename", "eiem.dll"
+            VALUE "InternalName", "sbm"
+            VALUE "OriginalFilename", "sbm.dll"
             VALUE "ProductName", "SecondaryMotion"
             VALUE "ProductVersion", SM_VERSION
         END

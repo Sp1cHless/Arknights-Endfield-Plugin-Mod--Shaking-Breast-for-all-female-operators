@@ -37,3 +37,4 @@ D:\Project\EndfieldBreastMotion\Manager\obj\Debug\net8.0-windows\refint\Secondar
 D:\Project\EndfieldBreastMotion\Manager\obj\Debug\net8.0-windows\SecondaryMotion.Manager.pdb
 D:\Project\EndfieldBreastMotion\Manager\obj\Debug\net8.0-windows\SecondaryMotion.Manager.genruntimeconfig.cache
 D:\Project\EndfieldBreastMotion\Manager\obj\Debug\net8.0-windows\ref\SecondaryMotion.Manager.dll
+D:\Project\EndfieldBreastMotion\Manager\obj\Debug\net8.0-windows\SecondaryMotion.Manager.sourcelink.json

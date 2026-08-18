@@ -37,3 +37,4 @@ D:\Project\EndfieldBreastMotion\Manager\obj\Release\net8.0-windows\SecondaryMoti
 D:\Project\EndfieldBreastMotion\Manager\obj\Release\net8.0-windows\ref\SecondaryMotion.Manager.dll
 D:\Project\EndfieldBreastMotion\Manager\obj\Release\net8.0-windows\GeneratedInternalTypeHelper.g.cs
 D:\Project\EndfieldBreastMotion\Manager\obj\Release\net8.0-windows\SecondaryMotion.Manager_MarkupCompile.lref
+D:\Project\EndfieldBreastMotion\Manager\obj\Release\net8.0-windows\SecondaryMotion.Manager.sourcelink.json

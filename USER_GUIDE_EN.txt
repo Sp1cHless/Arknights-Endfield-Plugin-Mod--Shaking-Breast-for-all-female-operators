@@ -1,0 +1,515 @@
+Endfield Shaking Breast Manager
+USER GUIDE
+========================
+
+This guide describes the basic operation of the Secondary Motion Manager.
+
+The Manager has four main pages:
+
+    1. Main
+    2. Characters
+    3. Presets
+    4. Developer
+
+Most users only need Main, Characters, and Presets.
+Developer is intended mainly for maintainers who add support for new characters.
+
+
+============================================================
+1. QUICK START
+============================================================
+
+Basic use:
+
+1. Install/extract the package according to the release instructions.
+2. Start the Manager.
+3. Start Arknights: Endfield.
+   The Manager and the game may be started in either order.
+4. Wait until the Manager shows that the game/plugin is available.
+5. Enter the game and switch to a supported character.
+6. Open the Main page.
+7. Enable the character if necessary.
+8. Select a motion mode:
+
+       Original
+       Synthetic
+       Amplify Native
+
+9. For Synthetic mode, adjust Walk / Run / Sprint/zipline values as desired.
+**Smoothing can affects the behaviours of Animation Transits eg, from run to stop **
+10. Press Apply. The changes will be reflected without restart of game. 
+11. Return to the game and test the result.
+12. Repeat the adjustment if necessary.
+
+The Manager is an external tool. No in-game UI is required.
+
+
+------------------------------------------------------------
+THE THREE MOTION MODES
+------------------------------------------------------------
+
+Original
+    No custom secondary-motion transform is written for the selected character.
+
+    Use this to return the character to the game's original
+    animation/secondary-motion behavior.
+
+
+Synthetic --- USE THIS -----
+    Generates configurable secondary motion based on the
+    character's current locomotion state.
+
+    Walk, Run, and Sprint can use different amplitudes and
+    frequencies.
+
+
+Amplify Native ----NOT LOOKING GOOD for most characters ----
+    Amplifies motion already produced by the game instead of
+    generating the Synthetic gait oscillator.
+
+    Use the Native Amplify value/factor to control the strength.
+
+
+============================================================
+2. MAIN PAGE
+============================================================
+
+The Main page is the quickest way to see the current runtime
+state and adjust the actively controlled character.
+
+Typical status fields include:
+
+Game
+    Shows whether the game is currently detected.
+
+Plugin
+    Shows whether the injected runtime/plugin is available.
+
+Character
+    Shows the currently detected controlled character.
+
+Preset
+    Shows the currently selected preset.
+
+
+------------------------------------------------------------
+CHARACTER ENABLE
+------------------------------------------------------------
+
+Enable
+    Enables custom processing for the current character/profile.
+
+When disabled, the character should use the original game behavior.
+
+
+------------------------------------------------------------
+MODE
+------------------------------------------------------------
+
+Choose one of:
+
+    Original
+    Synthetic
+    Amplify Native
+
+
+------------------------------------------------------------
+GAIT SETTINGS
+------------------------------------------------------------
+
+Synthetic mode can use separate values for:
+
+    Walk
+    Run
+    Sprint
+    Zipline
+
+Each gait normally has:
+
+Amplitude
+    Controls the rotational strength of the generated motion.
+
+Frequency
+    Controls how quickly the generated oscillation cycles.
+
+Higher amplitude = larger movement.
+Higher frequency = faster movement. NO NEED TO TOUCH it as I already adjuested according to Animations Frequencies. 
+
+
+------------------------------------------------------------
+ADVANCED SETTINGS
+------------------------------------------------------------
+
+Amplitude Scale
+    Character-level multiplier applied to generated amplitude.
+
+    The same raw angle can look different on different character
+    rigs/models, so this can be character-specific.
+
+
+Axis
+    Selects the rotation axis used by the profile.
+
+    Typical options:
+        X - no character using this yet
+        Y
+        Z
+
+    Normal users generally should not change a verified
+    character's axis.
+
+
+Direction
+    Selects the positive/negative rotation direction.
+
+    Typical options:
+        +
+        -
+
+**Smoothing can affects the behaviours of Animation Transits eg, from run to stop **
+
+Transition Smoothing
+    Controls how smoothly amplitude responds when character switches between run/walk/sprint
+
+    Larger value:
+        slower / smoother transition
+
+    Smaller value:
+        faster / more responsive transition
+
+
+Frequency Smoothing
+    Controls how smoothly when applying smoothing
+    Larger value:
+        frequency changes more gradually
+
+    Smaller value:
+        frequency reacts more quickly
+
+
+Stop Smoothing
+    Controls the dedicated return-to-stop from run/walk/sprint
+    Larger value:
+        motion stops more slowly
+
+    Smaller value:
+        motion settles more quickly
+
+
+Note: example usage of smoothing:
+Frequency = 1, Stop = 0.5, the transition bounce will bounce less , smaller amplitude and stops, looks heavier.
+Whereas for frequency = 0.5 and stop = 1 the transition bounce will jiggle more frequently before stops.
+
+Native Amplify
+    Amplification factor used by Amplify Native mode.
+
+    This is separate from Synthetic amplitude.
+
+
+Jump
+    The legacy jump/landing feature may still appear in some
+    development UI/builds.
+
+    It is currently outside the main supported feature set and
+    should normally remain disabled.
+
+
+------------------------------------------------------------
+APPLY
+------------------------------------------------------------
+
+Press Apply after changing values.
+
+A successful apply should produce a visible success/acknowledged
+state in the Manager.
+
+If Apply reports an error, do not assume that the game accepted
+the new values.
+
+
+============================================================
+3. CHARACTERS PAGE
+============================================================
+
+The Characters page is used to edit settings for a specific
+supported character rather than only the currently controlled one.
+
+The page normally contains:
+
+    Character list
+    Enable
+    Motion mode
+    Walk settings
+    Run settings
+    Sprint settings
+    Advanced settings
+    Apply
+
+
+------------------------------------------------------------
+CHARACTER LIST
+------------------------------------------------------------
+
+Select a character from the list to edit that character's
+profile/preset override.
+
+The selected character does not necessarily have to be the
+character currently controlled in-game.
+
+
+------------------------------------------------------------
+PER-CHARACTER SETTINGS
+------------------------------------------------------------
+
+Each supported character can have independent values.
+
+This is intentional.
+
+Different rigs and models can produce different visual motion
+from the same numeric angle, so one global setting is not assumed
+to be correct for every character.
+
+
+------------------------------------------------------------
+DELETE FROM PRESET
+------------------------------------------------------------
+
+If the current UI contains "Delete from preset":
+
+    This removes the selected character's user override from
+    the database, as you need to re-scan the character
+
+
+============================================================
+4. PRESETS PAGE
+============================================================
+
+Presets store user-facing motion preferences.
+
+The default character database contains technical character
+information such as bone mappings and axis data; presets are
+intended to store user choices such as mode and motion values.
+
+Expected preset operations include:
+
+Select
+    Load/select a preset for editing/use.
+
+New
+    Create a new preset.
+
+Duplicate
+    Copy an existing preset.
+
+Rename
+    Rename a preset.
+
+Import
+    Import a preset file.
+
+Export
+    Export the selected preset for backup/sharing.
+
+Delete
+    Delete a user preset.
+
+Reset
+    Restore/reset values according to the current implementation.
+
+
+------------------------------------------------------------
+PRESET SHARING
+------------------------------------------------------------
+
+A shared preset should represent user motion preferences.
+
+Technical character compatibility data should come from the
+shipped character database rather than requiring every user
+preset to redefine bone names.
+
+
+============================================================
+5. DEVELOPER PAGE
+============================================================
+============================================================
+ADDING A NEW CHARACTER
+============================================================
+
+IMPORTANT:
+    This section is for maintainers/developers.
+
+    Do not add a character to the default database until the bone
+    pair, axis, direction, and basic motion behavior have been
+    verified in-game.
+
+
+------------------------------------------------------------
+STEP 1 — DETECT THE CHARACTER
+------------------------------------------------------------
+
+1. Enter the game.
+2. Switch to the unsupported/new character.
+3. Open Developer.
+4. Check the detected/canonical character ID.
+
+Expected canonical IDs look similar to:
+
+    chr_xxxx_name
+
+It is an internal name for the company so dont be surprised if you see an unfamiliar name
+
+Runtime suffixes such as Clone/object-instance text should not
+become part of the canonical ID.
+
+
+------------------------------------------------------------
+STEP 2 — SCAN THE SKELETON
+------------------------------------------------------------
+
+Run the skeleton/bone scanner.
+May wait for a few seconds, or can press 'scan' again. 
+It will displayes all bones found, use filter to get the bones we need, generally 'breast' or 'xiong'
+U will found a similar structure of xiong_R_0_skin_jnt or  breast_R_01_jnt you may found multiple ones
+
+------------------------------------------------------------
+STEP 3 — SELECT LEFT / RIGHT BONES
+------------------------------------------------------------
+
+Common bone-name families discovered during research include:
+
+    breast_R_01_jnt / breast_L_01_jnt
+    R_breast_01_jnt / L_breast_01_jnt
+    xiong_R_0_skin_jnt / xiong_L_0_skin_jnt
+
+
+for 'xiong' select R_0 instead of R_1
+for 'breast' select R_1 instead of R_2
+
+
+These are examples only.
+
+Do not assume that an unknown character must use one of these
+pairs without verifying it.
+
+Select left and right bones with the buttons below
+
+
+------------------------------------------------------------
+STEP 4 — SAVE / PUBLISH THE CHARACTER
+------------------------------------------------------------
+
+You can enter the displayed name of the data, 
+If not it will be displayed as chr_xxxx_name. You can always edit it in Character page
+SAVE it. MUST Save before use it
+
+------------------------------------------------------------
+STEP 6 — VALIDATE
+------------------------------------------------------------
+Press Validate to see if everthing needed is here. Generally, I used the tool to import all characters, no mistakes found. 
+
+A complete validation should confirm at least:
+
+    Character ID valid
+    Right bone found
+    Left bone found
+    Bones are distinct
+    Axis valid
+    Direction/sign valid
+    Scale valid
+    Gait amplitudes valid
+    Gait frequencies valid
+    Runtime write works
+    No runtime error during the test
+
+============================================================
+7. BASIC TROUBLESHOOTING
+============================================================
+
+Game says Not Running
+    Make sure the game is actually running.
+    The Manager should not require the game to be started first.
+
+
+Plugin is not Ready
+    Check that the runtime DLL is installed in the expected
+    package/plugin location.
+
+    Check the runtime log if available.
+
+
+Character is detected but motion does not run
+    Confirm:
+        - character is supported
+        - character is enabled
+        - mode is not Original
+        - profile/bones are found
+        - Apply completed successfully
+
+
+Changing values has no effect
+    Press Apply and verify that the Manager reports the new
+    configuration as applied.
+
+    Editing a field alone should not be assumed to update the game.
+    
+    Try with a larger value eg, 100 to see if it works
+
+
+Motion looks wrong on only one character
+    Use that character's per-character settings.
+
+    Do not automatically change global values for every character.
+
+
+Unsupported/new character
+    Leave the character on native/original behavior unless you are
+    intentionally profiling it through Developer Mode.
+
+
+============================================================
+8. PARAMETER REFERENCE
+============================================================
+
+Amplitude
+    Motion strength / rotation size.
+
+Frequency
+    Oscillation speed in Hz.
+
+Amplitude Scale
+    Character-level multiplier.
+
+Axis
+    X / Y / Z rotation axis.
+
+Direction
+    Positive or negative axis direction.
+
+Env Attack Tau
+    Amplitude response smoothing.
+
+Env Freq Tau
+    Frequency response smoothing.
+
+Env To-Idle Tau
+    Stop/return-to-idle smoothing.
+
+Native Amplify
+    Amplification factor for Amplify Native mode.
+
+
+============================================================
+9. IMPORTANT NOTES
+============================================================
+
+- Settings are character-dependent.
+- Unsupported characters should remain native rather than using
+  guessed bone settings.
+- The main supported visual target is the actively controlled
+  character.
+- Background party-member motion is not a product requirement.
+- Jump-specific custom motion is currently not part of the main
+  supported feature set.
+- Game updates may require a plugin/runtime compatibility update.
+- Keep the entire release folder together unless release
+  instructions explicitly say otherwise.

@@ -72,6 +72,16 @@ public class AppCtx {
         Config.Write(rev, Config.ActivePreset, true);
     }
 
+    // Full delete: remove the DB entry (character becomes "unknown" again,
+    // Developer wizard can re-scan) + drop its preset override + reload.
+    public void DeleteCharacter(string id) {
+        Db.DeleteCharacter(id);
+        Presets.RemoveOverride(Config.ActivePreset, id);
+        Reload();
+        int rev = Config.NextRevision();
+        Config.Write(rev, Config.ActivePreset, true);
+    }
+
     public string ActivePreset => Config.ActivePreset;
 
     // Reload the database + merged model (after a wizard Save).

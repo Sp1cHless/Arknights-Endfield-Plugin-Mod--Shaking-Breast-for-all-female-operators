@@ -112,7 +112,15 @@ public class CharactersViewModel : ViewModelBase {
     void DeleteSelected() {
         if (Selected == null) return;
         string id = Selected.Data.Id;
-        _ctx.RemoveFromPreset(id);
+        string name = Selected.Data.DisplayName.Length > 0 ? Selected.Data.DisplayName : id;
+        var ask = System.Windows.MessageBox.Show(
+            "Delete \"" + name + "\" (" + id + ")?\n\n" +
+            "Its database entry and preset overrides will be removed. " +
+            "The character returns to unknown and can be re-scanned and re-recorded in the Developer page.",
+            "Secondary Motion", System.Windows.MessageBoxButton.YesNo,
+            System.Windows.MessageBoxImage.Warning);
+        if (ask != System.Windows.MessageBoxResult.Yes) return;
+        _ctx.DeleteCharacter(id);
         Refresh();
     }
 

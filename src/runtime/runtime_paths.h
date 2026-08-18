@@ -1,7 +1,7 @@
 #pragma once
 // runtime/runtime_paths.h — resolve the SecondaryMotion data directory from
 // the DLL's own module path (independent of the process working directory):
-//   <game root>/plugin/eiem.dll  ->  <game root>/SecondaryMotion/
+//   <game root>/plugin/sbm.dll  ->  <game root>/SecondaryMotion/
 // V2 layout (architecture §1):
 //   SecondaryMotion/
 //     data/characters.default.json
@@ -30,7 +30,7 @@ static bool RuntimePathsInit() {
   DWORD n = GetModuleFileNameA(g_hEiemModule, modulePath,
                                sizeof(modulePath) - 64);
   if (n == 0 || n >= sizeof(modulePath) - 64) return false;
-  // modulePath points at ...\plugin\eiem.dll -> strip file + "plugin\" dir
+  // modulePath points at ...\plugin\sbm.dll -> strip file + "plugin\" dir
   char *slash = strrchr(modulePath, '\\');
   if (!slash) return false;
   *slash = 0;  // ...\plugin
