@@ -1,6 +1,8 @@
 # Secondary Motion Manager for Arknights: Endfield
 
 > An unofficial open-source runtime secondary-motion tool and character-profile manager for **Arknights: Endfield**.
+> This page is mainly for technical discussion, usage problems please check user_guide.txt under release.
+> 这个页面主要是技术讨论，跟工具实际使用相关请查看工具包里的使用说明txt
 
 This project adds configurable runtime secondary motion to supported characters while preserving the game's normal locomotion animation. It includes a lightweight Windows manager for per-character settings, presets, live configuration updates, native-motion amplification, and developer tools for adding newly supported characters.
 
