@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "name": "User",
+  "_comment": "Example: disable Chen, tune Yvonne's run amplitude. Apply = Manager rewrites runtime/config.json with a new revision.",
+  "characters": {
+    "chr_0005_chen": { "enabled": false, "motion_mode": "off" },
+    "chr_0017_yvonne": {
+      "enabled": true,
+      "motion_mode": "synthetic",
+      "gait": { "run": { "amplitude_deg": 10.0, "frequency_hz": 1.7 } }
+    }
+  }
+}

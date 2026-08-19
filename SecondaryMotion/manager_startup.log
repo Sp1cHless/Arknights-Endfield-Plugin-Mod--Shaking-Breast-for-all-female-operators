@@ -1,8 +1,9 @@
 manager_dir: D:\Project\EndfieldBreastMotion\SecondaryMotion\
 settings.game_data_dir: E:\GAMU\Hypergryph Launcher\games\Endfield Game\SecondaryMotion
 data_root: E:\GAMU\Hypergryph Launcher\games\Endfield Game\SecondaryMotion
+proxy_sync: done
 status_path: E:\GAMU\Hypergryph Launcher\games\Endfield Game\SecondaryMotion\runtime\runtime_status.json
 status_exists: True
-status_age_s: 1005.2
+status_age_s: 3090.0
 chars_loaded: 19
-preset: Default rev=147
+preset: Default rev=167

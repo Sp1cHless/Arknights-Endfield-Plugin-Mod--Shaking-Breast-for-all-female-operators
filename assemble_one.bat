@@ -1,0 +1,52 @@
+@echo off
+rem ============================================================
+rem assemble_one.bat - publish one Manager project (self-contained
+rem win-x64), assemble a clean package and zip it.
+rem Usage: assemble_one.bat <LANG> <PROJECT_DIR> <VERSION>
+rem   LANG  = EN or ZH  (used in the zip filename)
+rem ============================================================
+setlocal
+
+set "LANG=%~1"
+set "PROJ=%~2"
+set "VER=%~3"
+set "ROOT=%~dp0"
+set "DIST=%ROOT%dist"
+set "STAGE=%DIST%\staging_%LANG%\SecondaryMotion"
+set "DOTNET=%LOCALAPPDATA%\Microsoft\dotnet\dotnet.exe"
+
+if exist "%DIST%\staging_%LANG%" rmdir /s /q "%DIST%\staging_%LANG%"
+mkdir "%STAGE%"
+
+echo   Publishing %LANG% Manager ...
+"%DOTNET%" publish "%PROJ%\SecondaryMotion.Manager.csproj" -c Release -r win-x64 --self-contained true -o "%STAGE%"
+if errorlevel 1 ( echo [ERROR] publish %LANG% failed & exit /b 1 )
+
+echo   Assembling %LANG% package ...
+mkdir "%STAGE%\plugin"
+mkdir "%STAGE%\data"
+mkdir "%STAGE%\presets"
+mkdir "%STAGE%\runtime"
+copy /y "%ROOT%bin\sbm.dll" "%STAGE%\plugin\" >nul
+copy /y "%ROOT%bin\d3dcompiler_47.dll" "%STAGE%\plugin\" >nul
+copy /y "%ROOT%bin\vulkan-1.dll" "%STAGE%\plugin\" >nul
+copy /y "%ROOT%SecondaryMotion\data\characters.default.json" "%STAGE%\data\" >nul
+copy /y "%ROOT%SecondaryMotion\presets\Default.json" "%STAGE%\presets\" >nul
+if exist "%ROOT%SecondaryMotion\presets\User.json" copy /y "%ROOT%SecondaryMotion\presets\User.json" "%STAGE%\presets\" >nul
+copy /y "%ROOT%SecondaryMotion\runtime\config.json" "%STAGE%\runtime\" >nul
+copy /y "%ROOT%USER_GUIDE_EN.txt" "%STAGE%\" >nul
+copy /y "%ROOT%README.md" "%STAGE%\" >nul
+rem ZH package: localize character display names in the DB copy and
+rem add the Chinese user guide (zh_names.py handles both; stage arg = 2nd)
+if /i "%LANG%"=="ZH" (
+    python "%ROOT%zh_names.py" "%STAGE%\data\characters.default.json" "%STAGE%"
+)
+rem drop dev-only artifacts that publish may have produced
+del /q "%STAGE%\*.pdb" 2>nul
+del /q "%STAGE%\settings.json" 2>nul
+
+echo   Zipping %LANG% ...
+powershell -NoProfile -Command "Compress-Archive -Path '%STAGE%' -DestinationPath '%DIST%\ShakingBreastManager-%VER%-%LANG%-win-x64.zip' -Force"
+if errorlevel 1 ( echo [ERROR] zip %LANG% failed & exit /b 1 )
+
+echo   Package: %DIST%\ShakingBreastManager-%VER%-%LANG%-win-x64.zip

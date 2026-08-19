@@ -268,23 +268,56 @@
 #pragma comment(linker, "/export:vkWaitForFences=C:\\Windows\\System32\\vulkan-1.vkWaitForFences")
 #pragma comment(linker, "/export:vkWaitSemaphores=C:\\Windows\\System32\\vulkan-1.vkWaitSemaphores")
 
-void LoadPlugin() {
-    WIN32_FIND_DATAA fd;
-    HANDLE hFind = FindFirstFileA("plugin\\*.dll", &fd);
-    if (hFind != INVALID_HANDLE_VALUE) {
-        do {
-            char path[MAX_PATH];
-            snprintf(path, MAX_PATH, "plugin\\%s", fd.cFileName);
-            LoadLibraryA(path);
-        } while (FindNextFileA(hFind, &fd));
-        FindClose(hFind);
-    }
+void LoadPlugin(HMODULE hModule) {
+  // Absolute scan path derived from THIS dll's own location (the game
+  // root), never from the process CWD - a launcher may start the game
+  // with a different working directory, which silently breaks relative
+  // "plugin\*.dll" scans.
+  char baseDir[MAX_PATH];
+  DWORD n = GetModuleFileNameA(hModule, baseDir, MAX_PATH);
+  if (n == 0 || n >= MAX_PATH) return;
+  char *slash = strrchr(baseDir, '\\');
+  if (!slash) return;
+  *slash = 0;
+
+  char logPath[MAX_PATH];
+  snprintf(logPath, MAX_PATH, "%s\\loader_log.txt", baseDir);
+  FILE *log = fopen(logPath, "a");
+  if (log) {
+    fprintf(log, "[LOADER] started, base=%s\n", baseDir);
+    fflush(log);
+  }
+
+  char pattern[MAX_PATH];
+  snprintf(pattern, MAX_PATH, "%s\\plugin\\*.dll", baseDir);
+  WIN32_FIND_DATAA fd;
+  HANDLE hFind = FindFirstFileA(pattern, &fd);
+  if (hFind != INVALID_HANDLE_VALUE) {
+    do {
+      char path[MAX_PATH];
+      snprintf(path, MAX_PATH, "%s\\plugin\\%s", baseDir, fd.cFileName);
+      if (log) {
+        fprintf(log, "[LOADER] loading %s ... ", path);
+        fflush(log);
+      }
+      HMODULE h = LoadLibraryA(path);
+      if (log) {
+        fprintf(log, h ? "OK\n" : "FAILED err=%lu\n", GetLastError());
+        fflush(log);
+      }
+    } while (FindNextFileA(hFind, &fd));
+    FindClose(hFind);
+  } else if (log) {
+    fprintf(log, "[LOADER] no plugin dlls found\n");
+    fflush(log);
+  }
+  if (log) fclose(log);
 }
 
 BOOL APIENTRY DllMain(HMODULE hModule, DWORD reason, LPVOID reserved) {
-    if (reason == DLL_PROCESS_ATTACH) {
-        DisableThreadLibraryCalls(hModule);
-        CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)LoadPlugin, NULL, 0, NULL);
-    }
-    return TRUE;
+  if (reason == DLL_PROCESS_ATTACH) {
+    DisableThreadLibraryCalls(hModule);
+    CreateThread(NULL, 0, (LPTHREAD_START_ROUTINE)LoadPlugin, hModule, 0, NULL);
+  }
+  return TRUE;
 }

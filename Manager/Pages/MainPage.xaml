@@ -188,7 +188,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
                         <TextBlock Text="Gait"
                                    Style="{StaticResource SectionTitle}" />
-                        <TextBlock Text="Edit Motion data, please adjust different values for each motion."
+                        <TextBlock Text="Edit Motion data, please adjust according to different clothes.Dont touch frequency"
                                    Style="{StaticResource SectionHintStyle}" />
                     </StackPanel>
 
@@ -311,7 +311,7 @@
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
                         <TextBlock Text="Advanced"
                                    Style="{StaticResource SectionTitle}" />
-                        <TextBlock Text="Usually Don't Touch"
+                        <TextBlock Text="Usually Don't Touch Axis and Direction if already set"
                                    Style="{StaticResource SectionHintStyle}" />
                     </StackPanel>
 
@@ -368,7 +368,7 @@
                                     ToolTip="Env attack tau — smooths amplitude across gait/state transitions, including run→walk and zipline transitions.">
                             <TextBlock Text="Transition smoothing"
                                        Style="{StaticResource AdvancedParamTitle}" />
-                            <TextBlock Text="Higher = smoother transitions · Lower = more responsive"
+                            <TextBlock Text="Higher = For motions to motions, smoother transitions · Lower = more responsive"
                                        Style="{StaticResource AdvancedParamHint}" />
                         </StackPanel>
                         <TextBox Grid.Row="3" Grid.Column="1"
@@ -402,7 +402,7 @@
                                     ToolTip="Env to-idle tau — dedicated stop/tail smoothing. Triggered when the clip name contains &quot;stop&quot; or &quot;_to_idle&quot;.">
                             <TextBlock Text="Stop smoothing"
                                        Style="{StaticResource AdvancedParamTitle}" />
-                            <TextBlock Text="Stop / to-idle only · Higher = gentler stop · Lower = sharper stop"
+                            <TextBlock Text="For motions to stop · Higher = gentler slower stop · Lower = sharper faster stop"
                                        Style="{StaticResource AdvancedParamHint}" />
                         </StackPanel>
                         <TextBox Grid.Row="5" Grid.Column="1"

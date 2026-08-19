@@ -1,0 +1,513 @@
+﻿<Page x:Class="SecondaryMotion.Manager.Pages.CharactersPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      Title="角色"
+      Loaded="OnLoaded"
+      Unloaded="OnUnloaded">
+
+    <Page.Resources>
+        <SolidColorBrush x:Key="CardBorderBrush" Color="#E4E7EB" />
+        <SolidColorBrush x:Key="CardBackgroundBrush" Color="#FFFFFF" />
+        <SolidColorBrush x:Key="MutedBrush" Color="#7A7A7A" />
+        <SolidColorBrush x:Key="SoftFillBrush" Color="#F4F6F8" />
+
+        <!-- Compact card -->
+        <Style x:Key="CardStyle" TargetType="{x:Type Border}">
+            <Setter Property="Background" Value="{StaticResource CardBackgroundBrush}" />
+            <Setter Property="BorderBrush" Value="{StaticResource CardBorderBrush}" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="6" />
+            <Setter Property="Padding" Value="12" />
+        </Style>
+
+        <Style x:Key="CompactLabel" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Foreground" Value="#222222" />
+        </Style>
+
+        <Style x:Key="SectionHintStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="9" />
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Margin" Value="8,1,0,0" />
+        </Style>
+
+        <Style x:Key="AdvancedParamTitle" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="FontWeight" Value="SemiBold" />
+            <Setter Property="Foreground" Value="#222222" />
+        </Style>
+
+        <Style x:Key="AdvancedParamHint" TargetType="{x:Type TextBlock}">
+            <Setter Property="FontSize" Value="8" />
+            <Setter Property="Foreground" Value="{StaticResource MutedBrush}" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="0,1,6,0" />
+        </Style>
+
+        <!-- Simple list item: no accent strip -->
+        <Style x:Key="CharacterListItemStyle" TargetType="{x:Type ListBoxItem}">
+            <Setter Property="Foreground" Value="#1B1B1B" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Padding" Value="8,4" />
+            <Setter Property="Margin" Value="0,1" />
+            <Setter Property="FontSize" Value="11" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                        <Border x:Name="ItemBorder"
+                                Background="{TemplateBinding Background}"
+                                CornerRadius="4"
+                                Padding="{TemplateBinding Padding}">
+                            <ContentPresenter />
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#F2F4F7" />
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="ItemBorder" Property="Background" Value="#EAF2FA" />
+                                <Setter Property="FontWeight" Value="SemiBold" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+
+    <Grid Background="#FAFAFB" Margin="14,12,18,14">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="220" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Character list -->
+        <Border Grid.Column="0"
+                Style="{StaticResource CardStyle}">
+            <DockPanel>
+                <Grid DockPanel.Dock="Top" Margin="0,0,0,8">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="角色"
+                                   FontSize="18"
+                                   FontWeight="SemiBold" />
+                        <TextBlock Text="选择一个角色进行编辑"
+                                   Foreground="{StaticResource MutedBrush}"
+                                   FontSize="9"
+                                   Margin="0,2,0,0" />
+                    </StackPanel>
+
+                    <Button Grid.Column="1"
+                            Content="Refresh"
+                            MinWidth="62"
+                            Height="26"
+                            FontSize="10"
+                            Margin="8,0,0,0"
+                            Command="{Binding RefreshCommand}" />
+                </Grid>
+
+                <ListBox ItemsSource="{Binding Items}"
+                         SelectedItem="{Binding Selected}"
+                         DisplayMemberPath="Display"
+                         BorderThickness="0"
+                         Background="Transparent"
+                         ItemContainerStyle="{StaticResource CharacterListItemStyle}" />
+            </DockPanel>
+        </Border>
+
+        <!-- Editor -->
+        <ScrollViewer Grid.Column="2"
+                      VerticalScrollBarVisibility="Auto"
+                      HorizontalScrollBarVisibility="Disabled">
+            <StackPanel MaxWidth="570"
+                        HorizontalAlignment="Left">
+
+                <TextBlock Text="{Binding Selected.Display,
+                                          TargetNullValue=Select a character,
+                                          FallbackValue=Select a character}"
+                           FontSize="20"
+                           FontWeight="SemiBold" />
+                <TextBlock Text="角色特定动作设置"
+                           Foreground="{StaticResource MutedBrush}"
+                           FontSize="9"
+                           Margin="0,2,0,0" />
+
+                <!-- Basic -->
+                <Border Style="{StaticResource CardStyle}"
+                        Margin="0,8,0,0"
+                        IsEnabled="{Binding HasSelection}">
+                    <StackPanel>
+                        <TextBlock Text="基本设置"
+                                   FontSize="12"
+                                   FontWeight="SemiBold"
+                                   Margin="0,0,0,8" />
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="125" />
+                                <ColumnDefinition Width="195" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="名字"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="0" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     Text="{Binding Selected.DisplayName,
+                                                    Mode=TwoWay,
+                                                    UpdateSourceTrigger=PropertyChanged}" />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="是否生效插件"
+                                       Style="{StaticResource CompactLabel}" />
+                            <CheckBox Grid.Row="1" Grid.Column="1"
+                                      VerticalAlignment="Center"
+                                      IsChecked="{Binding Selected.Enabled}" />
+
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="生效模式"
+                                       Style="{StaticResource CompactLabel}" />
+                            <ComboBox Grid.Row="2" Grid.Column="1"
+                                      Height="26"
+                                      FontSize="10"
+                                      SelectedIndex="{Binding Selected.ModeIndex}">
+                                <ComboBoxItem Content="Original (off)" />
+                                <ComboBoxItem Content="Synthetic" />
+                                <ComboBoxItem Content="Amplify Native" />
+                            </ComboBox>
+
+                            <TextBlock Grid.Row="3" Grid.Column="0"
+                                       Text="ID (dev)"
+                                       Style="{StaticResource CompactLabel}" />
+                            <Border Grid.Row="3" Grid.Column="1"
+                                    Background="{StaticResource SoftFillBrush}"
+                                    CornerRadius="4"
+                                    Padding="7,3">
+                                <TextBlock Text="{Binding Selected.Data.Id}"
+                                           Foreground="{StaticResource MutedBrush}"
+                                           FontSize="10"
+                                           VerticalAlignment="Center" />
+                            </Border>
+
+                            <TextBlock Grid.Row="4" Grid.Column="0"
+                                       Text="幅度倍率"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="4" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.AmpScale,
+                                                    Mode=TwoWay,
+                                                    Converter={StaticResource DoubleToText}}" />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Gait -->
+                <Border Style="{StaticResource CardStyle}"
+                        Margin="0,8,0,0"
+                        IsEnabled="{Binding HasSelection}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
+                            <TextBlock Text="动作"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource AccentBrush}" />
+                            <TextBlock Text="调整动作数据."
+                                       Style="{StaticResource SectionHintStyle}" />
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="52" />
+                                <ColumnDefinition Width="118" />
+                                <ColumnDefinition Width="118" />
+                                <ColumnDefinition Width="118" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="22" />
+                                <RowDefinition Height="32" />
+                                <RowDefinition Height="32" />
+                                <RowDefinition Height="32" />
+                                <RowDefinition Height="32" />
+</Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="1"
+                                       Text="向上 (度)"
+                                       Foreground="{StaticResource MutedBrush}"
+                                       FontSize="9"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="2"
+                                       Text="向下 (度)"
+                                       Foreground="{StaticResource MutedBrush}"
+                                       FontSize="9"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                            <TextBlock Grid.Row="0" Grid.Column="3"
+                                       Text="晃动频率 (Hz)"
+                                       Foreground="{StaticResource MutedBrush}"
+                                       FontSize="9"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="行走"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="1" Grid.Column="1"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.WalkDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="1" Grid.Column="2"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.WalkAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="1" Grid.Column="3"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.WalkFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <TextBlock Grid.Row="2" Grid.Column="0"
+                                       Text="跑动"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="2" Grid.Column="1"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.RunDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="2" Grid.Column="2"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.RunAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="2" Grid.Column="3"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.RunFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <TextBlock Grid.Row="3" Grid.Column="0"
+                                       Text="冲刺"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="3" Grid.Column="1"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.SprintDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="3" Grid.Column="2"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.SprintAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBox Grid.Row="3" Grid.Column="3"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.SprintFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                            <TextBlock Grid.Row="4" Grid.Column="0"
+                                       Text="挂滑索"
+                                       Style="{StaticResource CompactLabel}" />
+                        <TextBox Grid.Row="4" Grid.Column="1"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.ZiplineAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
+                        <TextBox Grid.Row="4" Grid.Column="2"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.ZiplineDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
+                        <TextBox Grid.Row="4" Grid.Column="3"
+                                     Height="26" Margin="3"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.ZiplineFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
+                        </Grid>
+                    </StackPanel>
+                </Border>
+
+                <!-- Advanced -->
+                <Border Style="{StaticResource CardStyle}"
+                        Margin="0,8,0,0"
+                        IsEnabled="{Binding HasSelection}">
+                    <StackPanel>
+                        <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
+                            <TextBlock Text="进阶设置"
+                                       FontSize="12"
+                                       FontWeight="SemiBold"
+                                       Foreground="{StaticResource AccentBrush}" />
+                            <TextBlock Text="Usually Don't Touch"
+                                       Style="{StaticResource SectionHintStyle}" />
+                        </StackPanel>
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="275" />
+                                <ColumnDefinition Width="155" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="31" />
+                                <RowDefinition Height="44" />
+                                <RowDefinition Height="44" />
+                                <RowDefinition Height="50" />
+                                <RowDefinition Height="31" />
+                            </Grid.RowDefinitions>
+
+                            <TextBlock Grid.Row="0" Grid.Column="0"
+                                       Text="运动坐标轴"
+                                       Style="{StaticResource CompactLabel}" />
+                            <ComboBox Grid.Row="0" Grid.Column="1"
+                                      Height="26"
+                                      FontSize="10"
+                                      SelectedIndex="{Binding Selected.AxisIndex}">
+                                <ComboBoxItem Content="Auto" />
+                                <ComboBoxItem Content="X" />
+                                <ComboBoxItem Content="Y" />
+                                <ComboBoxItem Content="Z" />
+                            </ComboBox>
+
+                            <TextBlock Grid.Row="1" Grid.Column="0"
+                                       Text="方向"
+                                       Style="{StaticResource CompactLabel}" />
+                            <ComboBox Grid.Row="1" Grid.Column="1"
+                                      Height="26"
+                                      FontSize="10"
+                                      SelectedIndex="{Binding Selected.SignIndex}">
+                                <ComboBoxItem Content="+" />
+                                <ComboBoxItem Content="-" />
+                            </ComboBox>
+
+                            <!-- Env attack tau -->
+                            <StackPanel Grid.Row="2" Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        ToolTip="Env attack tau — smooths amplitude across gait/state transitions, including run→walk and zipline transitions.">
+                                <TextBlock Text="不同动作平滑过渡"
+                                           Style="{StaticResource AdvancedParamTitle}" />
+                                <TextBlock Text="数值越高，过渡越平滑 · 数值越低，过渡越快"
+                                           Style="{StaticResource AdvancedParamHint}" />
+                            </StackPanel>
+                            <TextBox Grid.Row="2" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     ToolTip="Env attack tau"
+                                     Text="{Binding Selected.EnvAttack, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <!-- Env freq tau -->
+                            <StackPanel Grid.Row="3" Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        ToolTip="Env freq tau — smooths changes in motion frequency.">
+                                <TextBlock Text="过渡频率平滑"
+                                           Style="{StaticResource AdvancedParamTitle}" />
+                                <TextBlock Text="数值越高，频率变化越平滑 · 数值越低，频率变化越快"
+                                           Style="{StaticResource AdvancedParamHint}" />
+                            </StackPanel>
+                            <TextBox Grid.Row="3" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     ToolTip="Env freq tau"
+                                     Text="{Binding Selected.EnvFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <!-- Env to-idle tau -->
+                            <StackPanel Grid.Row="4" Grid.Column="0"
+                                        VerticalAlignment="Center"
+                                        ToolTip="Env to-idle tau — dedicated stop/tail smoothing. Triggered when the clip name contains &quot;stop&quot; or &quot;_to_idle&quot;.">
+                                <TextBlock Text="从动作到静止平滑过渡"
+                                           Style="{StaticResource AdvancedParamTitle}" />
+                                <TextBlock Text="数值越高，过渡越平滑越慢 · 数值越低，过渡越快（快速停止）"
+                                           Style="{StaticResource AdvancedParamHint}" />
+                            </StackPanel>
+                            <TextBox Grid.Row="4" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalAlignment="Center"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     ToolTip="Env to-idle tau — clips containing &quot;stop&quot; or &quot;_to_idle&quot;"
+                                     Text="{Binding Selected.EnvIdle, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+
+                            <TextBlock Grid.Row="5" Grid.Column="0"
+                                       Text="原生增益"
+                                       Style="{StaticResource CompactLabel}" />
+                            <TextBox Grid.Row="5" Grid.Column="1"
+                                     Height="26"
+                                     FontSize="10"
+                                     VerticalContentAlignment="Center"
+                                     TextAlignment="Right"
+                                     Text="{Binding Selected.NativeFactor, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                        </Grid>
+
+                        <CheckBox Content="跳跃 (旧版着陆阻尼)"
+                                  Margin="0,7,0,0"
+                                  FontSize="10"
+                                  Foreground="Black"
+                                  IsChecked="{Binding Selected.JumpEnabled}" />
+                    </StackPanel>
+                </Border>
+
+                <!-- Actions -->
+                <StackPanel Orientation="Horizontal"
+                            Margin="0,10,0,2"
+                            IsEnabled="{Binding HasSelection}">
+                    <Button Content="应用"
+                            Width="108"
+                            Height="28"
+                            FontSize="10"
+                            Command="{Binding ApplyCommand}" />
+                    <Button Content="从预设中删除"
+                            Width="126"
+                            Height="28"
+                            FontSize="10"
+                            Margin="7,0,0,0"
+                            Command="{Binding DeleteCommand}" />
+                    <TextBlock Text="{Binding ApplyMessage}"
+                               VerticalAlignment="Center"
+                               FontSize="10"
+                               Margin="10,0,0,0"
+                               Foreground="{StaticResource AccentBrush}" />
+                </StackPanel>
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</Page>

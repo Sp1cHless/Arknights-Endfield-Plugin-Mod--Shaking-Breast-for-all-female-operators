@@ -1,5 +1,1 @@
 verify_tests.cpp
-verify_tests.cpp(145): error C2653: “SyntheticMotion”: 不是类或命名空间名称
-verify_tests.cpp(145): error C3861: “GaitDownAmplitude”: 找不到标识符
-verify_tests.cpp(147): error C2653: “SyntheticMotion”: 不是类或命名空间名称
-verify_tests.cpp(147): error C3861: “GaitDownAmplitude”: 找不到标识符
