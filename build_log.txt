@@ -1,0 +1,22 @@
+[INFO] Found MSVC at: "C:\Program Files (x86)\Microsoft Visual Studio\2022\BuildTools\VC\Auxiliary\Build\vcvars64.bat"
+[1/4] Compiling version resource ...
+[2/4] Building sbm.dll ...
+sbm.cpp
+libMinHook.x64.lib(hook.obj) : 找到 MSIL .netmodule 或使用 /GL 编译的模块；正在使用 /LTCG 重新启动链接；将 /LTCG 添加到链接命令行以改进链接器性能
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+正在生成代码
+已完成代码的生成
+[OK] sbm.dll built successfully
+[3/4] Building d3dcompiler_47.dll (proxy loader) ...
+proxy_d3dcompiler.cpp
+  正在创建库 bin\d3dcompiler_47.lib 和对象 bin\d3dcompiler_47.exp
+[4/4] Building vulkan-1.dll (vulkan proxy loader) ...
+proxy_vulkan_full.cpp
+  正在创建库 bin\vulkan-1.lib 和对象 bin\vulkan-1.exp
+==========================================
+  Build Complete
+==========================================
+Output files in bin\:
+  - sbm.dll               (secondary motion plugin)
+  - d3dcompiler_47.dll     (DX proxy loader)
+  - vulkan-1.dll           (Vulkan proxy loader)

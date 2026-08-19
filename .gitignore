@@ -1,4 +1,112 @@
-bin/
-build_log.txt
-*.obj
-*.exe
+# ============================================================
+# Secondary Motion - Git Ignore
+# ============================================================
+
+
+# ------------------------------------------------------------
+# .NET / WPF build output
+# ------------------------------------------------------------
+
+**/bin/
+**/obj/
+
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+
+# ------------------------------------------------------------
+# IDE / Editor local files
+# ------------------------------------------------------------
+
+.vs/
+.vscode/
+.idea/
+
+
+# ------------------------------------------------------------
+# Native / CMake build output
+# ------------------------------------------------------------
+
+SecondaryMotion/build/
+SecondaryMotion/bin/
+
+**/CMakeFiles/
+**/CMakeCache.txt
+**/cmake_install.cmake
+**/CTestTestfile.cmake
+**/Testing/
+**/_deps/
+
+
+# ------------------------------------------------------------
+# Runtime generated files
+# ------------------------------------------------------------
+
+SecondaryMotion/runtime/runtime_status.json
+SecondaryMotion/runtime/config.json
+SecondaryMotion/runtime/developer_command.json
+
+SecondaryMotion/plugin/sbm_log.txt
+
+SecondaryMotion/logs/*
+!SecondaryMotion/logs/.gitkeep
+
+
+# ------------------------------------------------------------
+# Developer / probe generated data
+# ------------------------------------------------------------
+
+SecondaryMotion/developer/*
+!SecondaryMotion/developer/.gitkeep
+
+
+# ------------------------------------------------------------
+# Manager release staging
+# ------------------------------------------------------------
+
+Manager/prezip/
+Manager_CH/prezip/
+
+dist/
+publish/
+artifacts/
+
+
+# ------------------------------------------------------------
+# Logs / temporary files
+# ------------------------------------------------------------
+
+*.log
+*.tmp
+*.temp
+*.bak
+*.old
+
+build_check*.log
+
+
+# ------------------------------------------------------------
+# Crash / diagnostic dumps
+# ------------------------------------------------------------
+
+*.dmp
+*.dump
+
+
+# ------------------------------------------------------------
+# Release archives
+# Put downloadable packages in GitHub Releases instead
+# ------------------------------------------------------------
+
+*.zip
+
+
+# ------------------------------------------------------------
+# OS generated files
+# ------------------------------------------------------------
+
+Thumbs.db
+Desktop.ini
+.DS_Store
