@@ -75,16 +75,21 @@ artifacts/
 
 
 # ------------------------------------------------------------
-# Logs / temporary files
+# Logs / build and test outputs
 # ------------------------------------------------------------
 
 *.log
+
+/build_log*.txt
+
+*.obj
+
+/verify_tests.exe
+
 *.tmp
 *.temp
 *.bak
 *.old
-
-build_check*.log
 
 
 # ------------------------------------------------------------
