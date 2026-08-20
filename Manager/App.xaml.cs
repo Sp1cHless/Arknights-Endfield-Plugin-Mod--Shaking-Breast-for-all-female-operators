@@ -92,6 +92,10 @@ public partial class App : Application {
 
             Ctx = new AppCtx(dataRoot, ManagerDir);
             Ctx.Load();
+            ChangeLog.Init(ManagerDir);
+            ChangeLog.Append("[Startup] data_root=" + dataRoot +
+                             " preset=" + Ctx.ActivePreset +
+                             " chars=" + Ctx.Characters.Count);
             diag.AppendLine("chars_loaded: " + Ctx.Characters.Count);
             diag.AppendLine("preset: " + Ctx.ActivePreset + " rev=" + Ctx.Config.Revision);
             File.WriteAllText(Path.Combine(ManagerDir, "manager_startup.log"), diag.ToString());

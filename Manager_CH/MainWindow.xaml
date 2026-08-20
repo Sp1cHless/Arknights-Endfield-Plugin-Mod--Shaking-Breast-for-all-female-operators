@@ -2,7 +2,7 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
-        Title="跳跃柰子管理器"
+        Title="ShakingBreast Manager"
         Width="900" Height="640"
         MinWidth="760" MinHeight="560"
         Icon="Assets/AppIcon.ico"
@@ -76,10 +76,10 @@
                          FontSize="13"
                          SelectedIndex="0"
                          ItemContainerStyle="{StaticResource NavItemStyle}">
-                    <ListBoxItem Content="主界面" />
-                    <ListBoxItem Content="所有角色" />
-                    <ListBoxItem Content="预设页" />
-                    <ListBoxItem Content="开发者模式" />
+                    <ListBoxItem Content="Main" />
+                    <ListBoxItem Content="Characters" />
+                    <ListBoxItem Content="Presets" />
+                    <ListBoxItem Content="Developer" />
                 </ListBox>
             </DockPanel>
         </Border>

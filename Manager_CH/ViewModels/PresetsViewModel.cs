@@ -79,6 +79,7 @@ public class PresetsViewModel : ViewModelBase {
         var presets = new PresetService(_ctx.BaseDir, App.ManagerDir);
         _ctx.ReloadPresetIntoModel(name);          // build model (db + empty preset)
         _ctx.Apply();                               // writes preset + config revision+1
+        ChangeLog.Append("[Preset] new: " + name);
         RefreshList();
         _selected = name; OnPropertyChanged(nameof(Selected));
         RefreshModelNotified();
@@ -91,6 +92,7 @@ public class PresetsViewModel : ViewModelBase {
         string src = presets.PathOf(_ctx.ActivePreset);
         if (File.Exists(src)) File.Copy(src, presets.PathOf(name), false);
         presets.SyncMirror(name);
+        ChangeLog.Append("[Preset] duplicate: " + _ctx.ActivePreset + " -> " + name);
         RefreshList();
     }
 
@@ -104,6 +106,7 @@ public class PresetsViewModel : ViewModelBase {
         File.Move(src, presets.PathOf(name));
         presets.SyncMirror(name);
         presets.SyncMirror("Default");
+        ChangeLog.Append("[Preset] rename: " + _ctx.ActivePreset + " -> " + name);
         if (_ctx.ActivePreset == "Default")
             File.Copy(presets.PathOf(name), presets.PathOf("Default"));  // Default is fallback
         _ctx.Config.Write(_ctx.Config.NextRevision(), name, true);
@@ -115,6 +118,7 @@ public class PresetsViewModel : ViewModelBase {
         if (_ctx.ActivePreset == "Default") return;
         if (!Confirm_("Delete", "Delete preset '" + _ctx.ActivePreset + "'?")) return;
         var presets = new PresetService(_ctx.BaseDir, App.ManagerDir);
+        ChangeLog.Append("[Preset] delete: " + _ctx.ActivePreset);
         presets.Delete(_ctx.ActivePreset);
         _ctx.ReloadPresetIntoModel("Default");
         _ctx.Apply();
@@ -130,6 +134,7 @@ public class PresetsViewModel : ViewModelBase {
         var presets = new PresetService(_ctx.BaseDir, App.ManagerDir);
         File.Copy(dlg.FileName, presets.PathOf(name), true);
         presets.SyncMirror(name);
+        ChangeLog.Append("[Preset] import: " + dlg.FileName + " as " + name);
         _ctx.ReloadPresetIntoModel(name);
         _ctx.Apply();
         RefreshList();

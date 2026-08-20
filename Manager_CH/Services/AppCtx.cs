@@ -94,12 +94,50 @@ public class AppCtx {
     public void Apply() {
         try {
             int rev = Config.NextRevision();
+            var before = Snapshot();
             Presets.Write(Config.ActivePreset, Characters);
             Config.Write(rev, Config.ActivePreset, true);
+            var after = Snapshot();
+            ChangeLog.Append("[Apply] rev=" + rev + " preset=" + Config.ActivePreset +
+                             ": " + DiffText(before, after));
             StartAck(rev);
         } catch (Exception ex) {
+            ChangeLog.Append("[Apply] ERROR: " + ex.Message);
             SetApply(ApplyState.Error, "Apply failed: " + ex.Message);
         }
+    }
+
+    // Compact per-character state for change detection.
+    Dictionary<string, string> Snapshot() {
+        var d = new Dictionary<string, string>();
+        foreach (var c in Characters)
+            d[c.Id] = Compact(c);
+        return d;
+    }
+
+    static string Compact(CharacterData c) {
+        string g = "";
+        for (int i = 0; i < 5; i++)
+            g += (i == 0 ? "" : " ") + c.Amp[i] + "/" + c.AmpDown[i] + "/" + c.Freq[i];
+        return "en=" + (c.Enabled ? 1 : 0) + " mo=" + c.Mode + " ax=" + c.Axis +
+               (c.AxisSign < 0 ? "-" : "+") + " sc=" + c.AmpScale + " ga=[" + g + "]" +
+               " env=" + c.EnvAttack + "/" + c.EnvFreq + "/" + c.EnvIdle +
+               " nat=" + c.NativeFactor + " jmp=" + (c.JumpEnabled ? 1 : 0);
+    }
+
+    static string DiffText(Dictionary<string, string> before,
+                           Dictionary<string, string> after) {
+        var parts = new List<string>();
+        foreach (var kv in after) {
+            if (!before.TryGetValue(kv.Key, out var old))
+                parts.Add("+" + kv.Key + " " + kv.Value);
+            else if (old != kv.Value)
+                parts.Add(kv.Key + " {" + old + "} -> {" + kv.Value + "}");
+        }
+        foreach (var kv in before)
+            if (!after.ContainsKey(kv.Key))
+                parts.Add("-" + kv.Key);
+        return parts.Count == 0 ? "(no change)" : string.Join(" | ", parts);
     }
 
     // Global plugin switch: write config.json (enabled + revision+1) only.

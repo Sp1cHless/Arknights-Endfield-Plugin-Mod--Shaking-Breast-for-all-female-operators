@@ -513,3 +513,13 @@ Native Amplify
 - Game updates may require a plugin/runtime compatibility update.
 - Keep the entire release folder together unless release
   instructions explicitly say otherwise.
+
+============================================================
+10. Uninstallation Steps
+============================================================
+1. Exit the Game
+2. Delete the \Secondary Motion folder under Endfield's root (where you select when first launch the exe).
+3. Delete the \plugin folder under Endfield's root. IMPORTANT: Make sure you delete 'plugin' folder with sbm.dll inside, NOT the 'plugins' with a 'S' behind - thats games's original folder, DONT TOUCH IT. 
+4. Under Endfield's root folder, find d3dcompiler_47.dll and vulkan-1.dll, Delete and rename the d3dcompiler_47.dll.bak and vulkan-1.dll.bak back to normal (remove .bak), they are the original dll. OR delete them all , by right the game will use windows' own dlls which not recommanded. 
+5. Delete the Whole manager folder, the one you unzipped. 
+6. Game is clean now. 

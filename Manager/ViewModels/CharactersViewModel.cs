@@ -120,6 +120,7 @@ public class CharactersViewModel : ViewModelBase {
             "Secondary Motion", System.Windows.MessageBoxButton.YesNo,
             System.Windows.MessageBoxImage.Warning);
         if (ask != System.Windows.MessageBoxResult.Yes) return;
+        ChangeLog.Append("[Character] delete: " + name + " (" + id + ")");
         _ctx.DeleteCharacter(id);
         Refresh();
     }

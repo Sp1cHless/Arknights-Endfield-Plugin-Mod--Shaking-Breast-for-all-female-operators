@@ -230,6 +230,9 @@ public class DeveloperViewModel : ViewModelBase, IDisposable {
                     data.JumpEnabled = aurora.JumpEnabled;
                 }
             }
+            ChangeLog.Append("[Character] save: " + id + " name=" + display +
+                                " R=" + right + " L=" + left +
+                                (existing == null ? " (new)" : " (update)"));
             _ctx.Db.SaveCharacter(data, display, right, left);
             // reload the merged model so the character becomes supported
             _ctx.Reload();

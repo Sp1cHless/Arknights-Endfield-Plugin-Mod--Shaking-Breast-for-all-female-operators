@@ -90,13 +90,13 @@
       "gait": {
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
         "walk": { "amplitude_deg": 10, "amplitude_down_deg": 15, "frequency_hz": 1.86 },
-        "run": { "amplitude_deg": 20, "amplitude_down_deg": 25, "frequency_hz": 3 },
-        "sprint": { "amplitude_deg": 40, "amplitude_down_deg": 40, "frequency_hz": 3.72 },
+        "run": { "amplitude_deg": 25, "amplitude_down_deg": 30, "frequency_hz": 3 },
+        "sprint": { "amplitude_deg": 45, "amplitude_down_deg": 50, "frequency_hz": 3.72 },
         "zipline": { "amplitude_deg": 10, "amplitude_down_deg": 10, "frequency_hz": 3 }
       },
       "envelope": {
-        "amplitude_attack_tau_sec": 0.5,
-        "frequency_tau_sec": 0.8,
+        "amplitude_attack_tau_sec": 1,
+        "frequency_tau_sec": 1,
         "to_idle_release_tau_sec": 0.35
       },
       "jump": { "enabled": false, "mode": "off" },
