@@ -105,6 +105,7 @@ public:
     float bestW = -1.0f;
     bool transToIdle = false;
     bool landing = false;
+    active.jumpDetected = false;  // recomputed every sample
     for (size_t i = 0; i < count; i++) {
       GaitClassification cls = ClassifyClipNameFull(clips[i].name);
       if (cls.gait >= GaitIdle && clips[i].weight > bestW) {
@@ -113,6 +114,7 @@ public:
       }
       if (cls.transitionToIdle) transToIdle = true;
       if (cls.landingDetected) landing = true;
+      if (cls.jumpDetected) active.jumpDetected = true;
     }
     active.currentGait = bestGait;
     active.transitionToIdle = transToIdle;

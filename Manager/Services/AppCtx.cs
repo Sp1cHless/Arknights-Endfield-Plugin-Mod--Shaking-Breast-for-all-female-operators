@@ -94,18 +94,33 @@ public class AppCtx {
     public void Apply() {
         try {
             int rev = Config.NextRevision();
-            var before = Snapshot();
+            // diff against the LAST Apply, not the instant before/after this
+            // one — an Apply is triggered by the user exactly when the model
+            // already holds their edits, so an instant compare is always
+            // "(no change)".
+            var before = _lastApplied;
             Presets.Write(Config.ActivePreset, Characters);
+            // mirror the preset into the game data dir - the runtime reads
+            // presets ONLY from the game dir, so an Apply without this mirror
+            // updates the tool folder but the game keeps the old values.
+            Presets.SyncMirror(Config.ActivePreset);
             Config.Write(rev, Config.ActivePreset, true);
             var after = Snapshot();
-            ChangeLog.Append("[Apply] rev=" + rev + " preset=" + Config.ActivePreset +
-                             ": " + DiffText(before, after));
+            _lastApplied = after;
+            if (before != null)
+                ChangeLog.Append("[Apply] rev=" + rev + " preset=" + Config.ActivePreset +
+                                 ": " + DiffText(before, after));
+            else
+                ChangeLog.Append("[Apply] rev=" + rev + " preset=" + Config.ActivePreset +
+                                 " (first apply)");
             StartAck(rev);
         } catch (Exception ex) {
             ChangeLog.Append("[Apply] ERROR: " + ex.Message);
             SetApply(ApplyState.Error, L10n.Get("Msg_ApplyFailed", ex.Message));
         }
     }
+
+    Dictionary<string, string>? _lastApplied;
 
     // Compact per-character state for change detection.
     Dictionary<string, string> Snapshot() {

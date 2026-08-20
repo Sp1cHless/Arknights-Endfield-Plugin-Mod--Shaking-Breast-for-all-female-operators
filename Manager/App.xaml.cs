@@ -175,11 +175,11 @@ public partial class App : Application {
                 Directory.CreateDirectory(Path.Combine(sm, sub));
 
             // 2. template files (only if missing — never clobber user data)
-            CopyIfMissing(Path.Combine(ManagerDir, "data", "characters.default.json"),
+            CopyIfMissing(Path.Combine(ManagerDir, "data", "characters.default.template.json"),
                           Path.Combine(sm, "data", "characters.default.json"));
-            CopyIfMissing(Path.Combine(ManagerDir, "presets", "Default.json"),
+            CopyIfMissing(Path.Combine(ManagerDir, "presets", "Default.template.json"),
                           Path.Combine(sm, "presets", "Default.json"));
-            CopyIfMissing(Path.Combine(ManagerDir, "presets", "User.json"),
+            CopyIfMissing(Path.Combine(ManagerDir, "presets", "User.template.json"),
                           Path.Combine(sm, "presets", "User.json"));
             CopyIfMissing(Path.Combine(ManagerDir, "runtime", "config.json"),
                           Path.Combine(sm, "runtime", "config.json"));

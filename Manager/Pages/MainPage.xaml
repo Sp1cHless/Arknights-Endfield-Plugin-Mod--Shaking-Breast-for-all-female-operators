@@ -233,12 +233,12 @@
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 Text="{Binding Current.WalkDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                                 Text="{Binding Current.WalkAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                         <TextBox Grid.Row="1" Grid.Column="2"
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 Text="{Binding Current.WalkAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                                 Text="{Binding Current.WalkDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                         <TextBox Grid.Row="1" Grid.Column="3"
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
@@ -252,12 +252,12 @@
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 Text="{Binding Current.RunDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                                 Text="{Binding Current.RunAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                         <TextBox Grid.Row="2" Grid.Column="2"
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 Text="{Binding Current.RunAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                                 Text="{Binding Current.RunDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                         <TextBox Grid.Row="2" Grid.Column="3"
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
@@ -271,12 +271,12 @@
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 Text="{Binding Current.SprintDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                                 Text="{Binding Current.SprintAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                         <TextBox Grid.Row="3" Grid.Column="2"
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 Text="{Binding Current.SprintAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
+                                 Text="{Binding Current.SprintDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                         <TextBox Grid.Row="3" Grid.Column="3"
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
@@ -289,12 +289,12 @@
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 Text="{Binding Current.ZiplineAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
+                                 Text="{Binding Current.ZiplineDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
                         <TextBox Grid.Row="4" Grid.Column="2"
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 Text="{Binding Current.ZiplineDown, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
+                                 Text="{Binding Current.ZiplineAmp, Mode=TwoWay, Converter={StaticResource DoubleToText}}"  />
                         <TextBox Grid.Row="4" Grid.Column="3"
                                  Height="30" Margin="4"
                                  VerticalContentAlignment="Center"

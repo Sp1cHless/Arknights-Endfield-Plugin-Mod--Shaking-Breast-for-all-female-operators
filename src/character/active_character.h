@@ -50,6 +50,7 @@ struct ActiveCharacterRuntime {
   int currentGait = -1;           // Gait enum
   bool transitionToIdle = false;
   bool jumpActive = false;
+  bool jumpDetected = false;      // any jump clip active this frame
 
   DWORD lastIdentityRefreshMs = 0;
   DWORD lastGaitSampleMs = 0;

@@ -30,6 +30,15 @@ struct SyntheticMotion {
     float downTarget = validGait ? DegToRad(GaitDownAmplitude(p, gait)) : 0.0f;
     float freqTarget = validGait ? GaitFrequency(p, gait) : 1.5f;
 
+    // Jump animations (any clip containing "jump", including landings) are
+    // classified as Run and would write large run amplitudes during the
+    // jump.  When the jump feature is OFF, keep jump clips fully native:
+    // zero the targets so the envelope eases out and nothing is written.
+    if (c.jumpDetected && !p.jump.enabled) {
+      ampTarget = 0.0f;
+      downTarget = 0.0f;
+    }
+
     ampTarget *= c.boneAmplitudeScale;  // family × profile scale
     ampTarget *= squadFactor;           // squad compensation (pre-envelope)
     downTarget *= c.boneAmplitudeScale;

@@ -11,8 +11,8 @@ namespace SecondaryMotion.Manager.ViewModels;
 public class CharacterItem : ViewModelBase {
 
     // record every user edit so "my change had no effect" can be traced
-    static void LogEdit(string field, object v) =>
-        Services.ChangeLog.Append("[Edit] " + field + " = " + v);
+    void LogEdit(string field, object v) =>
+        Services.ChangeLog.Append("[Edit] " + Data.Id + " " + field + " = " + v);
     public CharacterData Data { get; }
     public CharacterItem(CharacterData d) { Data = d; }
 
@@ -45,11 +45,11 @@ public class CharacterItem : ViewModelBase {
     public double SprintAmp { get => Data.Amp[3]; set { Data.Amp[3] = value; LogEdit("SprintAmp", value); OnPropertyChanged(); } }
     public double ZiplineAmp { get => Data.Amp[4]; set { Data.Amp[4] = value; LogEdit("ZiplineAmp", value); OnPropertyChanged(); } }
 
-    // down amplitudes.  RUNTIME NAMING NOTE: the amplitude_deg channel
-    // swings the FIRST half-cycle which in-game is the DOWNWARD swing;
-    // amplitude_down_deg is the UPWARD swing.  The UI names are swapped
-    // against the field names (Up column binds AmpDown etc.).  Display
-    // defaults to the symmetric value (= up) when no explicit down is set.
+    // down amplitudes.  RUNTIME SEMANTICS (verified in-game): amplitude_deg
+    // (Amp, first half-cycle) = visual UP swing; amplitude_down_deg (AmpDown,
+    // second half-cycle) = visual DOWN swing.  UI columns bind directly:
+    // Up column -> Amp, Down column -> AmpDown.  A down value of 0 means
+    // symmetric (= up value, runtime falls back to Amp).
     public double IdleDown { get => Data.AmpDown[0] > 0 ? Data.AmpDown[0] : Data.Amp[0]; set { Data.AmpDown[0] = value; LogEdit("IdleDown", value); OnPropertyChanged(); } }
     public double WalkDown { get => Data.AmpDown[1] > 0 ? Data.AmpDown[1] : Data.Amp[1]; set { Data.AmpDown[1] = value; LogEdit("WalkDown", value); OnPropertyChanged(); } }
     public double RunDown { get => Data.AmpDown[2] > 0 ? Data.AmpDown[2] : Data.Amp[2]; set { Data.AmpDown[2] = value; LogEdit("RunDown", value); OnPropertyChanged(); } }

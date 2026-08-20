@@ -51,7 +51,7 @@
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
         "walk": { "amplitude_deg": 10, "amplitude_down_deg": 10, "frequency_hz": 1.8 },
         "run": { "amplitude_deg": 20, "amplitude_down_deg": 25, "frequency_hz": 3 },
-        "sprint": { "amplitude_deg": 30, "amplitude_down_deg": 35, "frequency_hz": 3.7 },
+        "sprint": { "amplitude_deg": 35, "amplitude_down_deg": 35, "frequency_hz": 3.7 },
         "zipline": { "amplitude_deg": 10, "amplitude_down_deg": 10, "frequency_hz": 4 }
       },
       "envelope": {
@@ -70,8 +70,8 @@
       "gait": {
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
         "walk": { "amplitude_deg": 25, "amplitude_down_deg": 25, "frequency_hz": 1.84 },
-        "run": { "amplitude_deg": 40, "amplitude_down_deg": 50, "frequency_hz": 2.24 },
-        "sprint": { "amplitude_deg": 50, "amplitude_down_deg": 60, "frequency_hz": 3.72 },
+        "run": { "amplitude_deg": 50, "amplitude_down_deg": 40, "frequency_hz": 2.24 },
+        "sprint": { "amplitude_deg": 60, "amplitude_down_deg": 50, "frequency_hz": 3.72 },
         "zipline": { "amplitude_deg": 25, "amplitude_down_deg": 25, "frequency_hz": 3 }
       },
       "envelope": {
@@ -89,10 +89,10 @@
       "axis": { "name": "Y", "sign": 1 },
       "gait": {
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
-        "walk": { "amplitude_deg": 10, "amplitude_down_deg": 15, "frequency_hz": 1.86 },
-        "run": { "amplitude_deg": 25, "amplitude_down_deg": 30, "frequency_hz": 3 },
-        "sprint": { "amplitude_deg": 45, "amplitude_down_deg": 50, "frequency_hz": 3.72 },
-        "zipline": { "amplitude_deg": 10, "amplitude_down_deg": 10, "frequency_hz": 3 }
+        "walk": { "amplitude_deg": 15, "amplitude_down_deg": 15, "frequency_hz": 1.86 },
+        "run": { "amplitude_deg": 30, "amplitude_down_deg": 35, "frequency_hz": 3 },
+        "sprint": { "amplitude_deg": 50, "amplitude_down_deg": 55, "frequency_hz": 3.72 },
+        "zipline": { "amplitude_deg": 15, "amplitude_down_deg": 10, "frequency_hz": 3 }
       },
       "envelope": {
         "amplitude_attack_tau_sec": 1,
@@ -128,9 +128,9 @@
       "amplitude_scale": 1,
       "gait": {
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
-        "walk": { "amplitude_deg": 25, "amplitude_down_deg": 30, "frequency_hz": 2.1 },
+        "walk": { "amplitude_deg": 30, "amplitude_down_deg": 25, "frequency_hz": 2.1 },
         "run": { "amplitude_deg": 50, "amplitude_down_deg": 50, "frequency_hz": 2.98 },
-        "sprint": { "amplitude_deg": 60, "amplitude_down_deg": 70, "frequency_hz": 3.72 },
+        "sprint": { "amplitude_deg": 70, "amplitude_down_deg": 60, "frequency_hz": 3.72 },
         "zipline": { "amplitude_deg": 25, "amplitude_down_deg": 20, "frequency_hz": 3 }
       },
       "envelope": {
@@ -168,8 +168,8 @@
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
         "walk": { "amplitude_deg": 15, "amplitude_down_deg": 15, "frequency_hz": 1.86 },
         "run": { "amplitude_deg": 20, "amplitude_down_deg": 20, "frequency_hz": 3 },
-        "sprint": { "amplitude_deg": 35, "amplitude_down_deg": 40, "frequency_hz": 3.71 },
-        "zipline": { "amplitude_deg": 15, "amplitude_down_deg": 10, "frequency_hz": 3 }
+        "sprint": { "amplitude_deg": 40, "amplitude_down_deg": 35, "frequency_hz": 3.71 },
+        "zipline": { "amplitude_deg": 10, "amplitude_down_deg": 15, "frequency_hz": 3 }
       },
       "envelope": {
         "amplitude_attack_tau_sec": 1,
@@ -207,7 +207,7 @@
       "gait": {
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
         "walk": { "amplitude_deg": 15, "amplitude_down_deg": 15, "frequency_hz": 1.8 },
-        "run": { "amplitude_deg": 20, "amplitude_down_deg": 25, "frequency_hz": 3 },
+        "run": { "amplitude_deg": 25, "amplitude_down_deg": 20, "frequency_hz": 3 },
         "sprint": { "amplitude_deg": 30, "amplitude_down_deg": 30, "frequency_hz": 3.72 },
         "zipline": { "amplitude_deg": 15, "amplitude_down_deg": 15, "frequency_hz": 3 }
       },
@@ -227,7 +227,7 @@
       "gait": {
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
         "walk": { "amplitude_deg": 15, "amplitude_down_deg": 15, "frequency_hz": 1.86 },
-        "run": { "amplitude_deg": 20, "amplitude_down_deg": 25, "frequency_hz": 3.1 },
+        "run": { "amplitude_deg": 25, "amplitude_down_deg": 25, "frequency_hz": 3.1 },
         "sprint": { "amplitude_deg": 30, "amplitude_down_deg": 30, "frequency_hz": 3.68 },
         "zipline": { "amplitude_deg": 15, "amplitude_down_deg": 15, "frequency_hz": 3 }
       },
@@ -246,8 +246,8 @@
       "axis": { "name": "Y", "sign": 1 },
       "gait": {
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
-        "walk": { "amplitude_deg": 10, "amplitude_down_deg": 12, "frequency_hz": 1.86 },
-        "run": { "amplitude_deg": 20, "amplitude_down_deg": 20, "frequency_hz": 2.7 },
+        "walk": { "amplitude_deg": 10, "amplitude_down_deg": 15, "frequency_hz": 1.86 },
+        "run": { "amplitude_deg": 20, "amplitude_down_deg": 30, "frequency_hz": 2.7 },
         "sprint": { "amplitude_deg": 30, "amplitude_down_deg": 30, "frequency_hz": 3.4 },
         "zipline": { "amplitude_deg": 10, "amplitude_down_deg": 10, "frequency_hz": 3 }
       },
@@ -347,8 +347,8 @@
       "gait": {
         "idle": { "amplitude_deg": 0, "frequency_hz": 1.2 },
         "walk": { "amplitude_deg": 10, "amplitude_down_deg": 15, "frequency_hz": 1.86 },
-        "run": { "amplitude_deg": 20, "amplitude_down_deg": 25, "frequency_hz": 3 },
-        "sprint": { "amplitude_deg": 30, "amplitude_down_deg": 35, "frequency_hz": 3.72 },
+        "run": { "amplitude_deg": 25, "amplitude_down_deg": 25, "frequency_hz": 3 },
+        "sprint": { "amplitude_deg": 35, "amplitude_down_deg": 35, "frequency_hz": 3.72 },
         "zipline": { "amplitude_deg": 10, "amplitude_down_deg": 10, "frequency_hz": 3 }
       },
       "envelope": {

@@ -28,9 +28,9 @@ mkdir "%STAGE%\runtime"
 copy /y "%ROOT%bin\sbm.dll" "%STAGE%\plugin\" >nul
 copy /y "%ROOT%bin\d3dcompiler_47.dll" "%STAGE%\plugin\" >nul
 copy /y "%ROOT%bin\vulkan-1.dll" "%STAGE%\plugin\" >nul
-copy /y "%ROOT%SecondaryMotion\data\characters.default.json" "%STAGE%\data\" >nul
-copy /y "%ROOT%SecondaryMotion\presets\Default.json" "%STAGE%\presets\" >nul
-if exist "%ROOT%SecondaryMotion\presets\User.json" copy /y "%ROOT%SecondaryMotion\presets\User.json" "%STAGE%\presets\" >nul
+copy /y "%ROOT%SecondaryMotion\data\characters.default.json" "%STAGE%\data\characters.default.template.json" >nul
+copy /y "%ROOT%SecondaryMotion\presets\Default.json" "%STAGE%\presets\Default.template.json" >nul
+if exist "%ROOT%SecondaryMotion\presets\User.json" copy /y "%ROOT%SecondaryMotion\presets\User.json" "%STAGE%\presets\User.template.json" >nul
 copy /y "%ROOT%SecondaryMotion\runtime\config.json" "%STAGE%\runtime\" >nul
 copy /y "%ROOT%USER_GUIDE_EN.txt" "%STAGE%\" >nul
 copy /y "%ROOT%README.md" "%STAGE%\" >nul
@@ -43,7 +43,7 @@ if /i "%LANG%"=="EN" (
 rem ZH package: localize character display names in the DB copy and
 rem add the Chinese user guide (zh_names.py handles both; stage arg = 2nd)
 if /i "%LANG%"=="ZH" (
-    python "%ROOT%zh_names.py" "%STAGE%\data\characters.default.json" "%STAGE%"
+    python "%ROOT%zh_names.py" "%STAGE%\data\characters.default.template.json" "%STAGE%"
 )
 rem drop dev-only artifacts that publish may have produced
 del /q "%STAGE%\*.pdb" 2>nul
