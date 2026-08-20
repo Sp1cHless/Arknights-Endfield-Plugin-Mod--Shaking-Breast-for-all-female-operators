@@ -1,7 +1,7 @@
 ﻿<Page x:Class="SecondaryMotion.Manager.Pages.MainPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Main"
+      Title="{DynamicResource M_main}"
       Loaded="OnLoaded"
       Unloaded="OnUnloaded">
 
@@ -54,7 +54,7 @@
                     HorizontalAlignment="Left">
 
             <!-- Page heading -->
-            <TextBlock Text="Shaking and Jumping Breast !"
+            <TextBlock Text="{DynamicResource M_shaking_and_jumping_breast}"
                        Style="{StaticResource PageTitle}" />
             <TextBlock Text="{Binding DataDir}"
                        Foreground="{StaticResource MutedBrush}"
@@ -63,7 +63,7 @@
                        TextWrapping="Wrap" />
 
             <!-- Global switch -->
-            <CheckBox Content="Plugin active (global switch — off = clean native game)"
+            <CheckBox Content="{DynamicResource M_plugin_active_global_switch_off_clea}"
                       Foreground="Black"
                       IsChecked="{Binding PluginActive}"
                       Margin="0,14,0,0" />
@@ -71,7 +71,7 @@
             <!-- Current status -->
             <Border Style="{StaticResource CardStyle}">
                 <StackPanel>
-                    <TextBlock Text="Current status"
+                    <TextBlock Text="{DynamicResource M_current_status}"
                                FontSize="13"
                                FontWeight="SemiBold"
                                Margin="0,0,0,10" />
@@ -89,7 +89,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0"
-                                   Text="Game"
+                                   Text="{DynamicResource M_game}"
                                    Style="{StaticResource FieldLabel}" />
                         <Border Grid.Row="0" Grid.Column="1"
                                 Background="{StaticResource SoftFillBrush}"
@@ -101,7 +101,7 @@
                         </Border>
 
                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="Plugin"
+                                   Text="{DynamicResource M_plugin}"
                                    Style="{StaticResource FieldLabel}" />
                         <Border Grid.Row="1" Grid.Column="1"
                                 Background="{StaticResource SoftFillBrush}"
@@ -113,7 +113,7 @@
                         </Border>
 
                         <TextBlock Grid.Row="2" Grid.Column="0"
-                                   Text="Character"
+                                   Text="{DynamicResource M_character}"
                                    Style="{StaticResource FieldLabel}" />
                         <Border Grid.Row="2" Grid.Column="1"
                                 Background="{StaticResource SoftFillBrush}"
@@ -125,7 +125,7 @@
                         </Border>
 
                         <TextBlock Grid.Row="3" Grid.Column="0"
-                                   Text="Preset"
+                                   Text="{DynamicResource M_preset}"
                                    Style="{StaticResource FieldLabel}" />
                         <Border Grid.Row="3" Grid.Column="1"
                                 Background="{StaticResource SoftFillBrush}"
@@ -142,7 +142,7 @@
             <!-- Character motion controls -->
             <Border Style="{StaticResource CardStyle}">
                 <StackPanel>
-                    <CheckBox Content="Enable motion for this character"
+                    <CheckBox Content="{DynamicResource M_enable_motion_for_this_character}"
                               Foreground="Black"
                               IsEnabled="{Binding HasCurrent}"
                               IsChecked="{Binding Current.Enabled}" />
@@ -154,7 +154,7 @@
                             Padding="10,7"
                             Margin="0,10,0,0"
                             Visibility="{Binding HasCurrent, Converter={StaticResource InverseBoolToVisibility}}">
-                        <TextBlock Text="ⓘ  Start the game to edit the current character"
+                        <TextBlock Text="{DynamicResource M_start_the_game_to_edit_the_current_c}"
                                    Foreground="#65717C"
                                    FontSize="11" />
                     </Border>
@@ -168,14 +168,14 @@
                         </Grid.ColumnDefinitions>
 
                         <TextBlock Grid.Column="0"
-                                   Text="Mode"
+                                   Text="{DynamicResource M_mode}"
                                    Style="{StaticResource FieldLabel}" />
                         <ComboBox Grid.Column="1"
                                   Height="30"
                                   SelectedIndex="{Binding Current.ModeIndex}">
-                            <ComboBoxItem Content="Original (off)" />
-                            <ComboBoxItem Content="Synthetic" />
-                            <ComboBoxItem Content="Amplify Native" />
+                            <ComboBoxItem Content="{DynamicResource M_original_off}" />
+                            <ComboBoxItem Content="{DynamicResource M_synthetic}" />
+                            <ComboBoxItem Content="{DynamicResource M_amplify_native}" />
                         </ComboBox>
                     </Grid>
                 </StackPanel>
@@ -186,9 +186,9 @@
                     IsEnabled="{Binding HasCurrent}">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                        <TextBlock Text="Gait"
+                        <TextBlock Text="{DynamicResource M_gait}"
                                    Style="{StaticResource SectionTitle}" />
-                        <TextBlock Text="Edit Motion data, please adjust according to different clothes.Dont touch frequency"
+                        <TextBlock Text="{DynamicResource M_edit_motion_data_please_adjust_accor}"
                                    Style="{StaticResource SectionHintStyle}" />
                     </StackPanel>
 
@@ -208,26 +208,26 @@
 </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="1"
-                                   Text="Up (degree)"
+                                   Text="{DynamicResource M_up_degree}"
                                    Foreground="{StaticResource MutedBrush}"
                                    FontSize="11"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
                         <TextBlock Grid.Row="0" Grid.Column="2"
-                                   Text="Down (degree)"
+                                   Text="{DynamicResource M_down_degree}"
                                    Foreground="{StaticResource MutedBrush}"
                                    FontSize="11"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
                         <TextBlock Grid.Row="0" Grid.Column="3"
-                                   Text="Frequency (Hz)"
+                                   Text="{DynamicResource M_frequency_hz}"
                                    Foreground="{StaticResource MutedBrush}"
                                    FontSize="11"
                                    HorizontalAlignment="Center"
                                    VerticalAlignment="Center" />
 
                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="Walk"
+                                   Text="{DynamicResource M_walk}"
                                    Style="{StaticResource FieldLabel}" />
                         <TextBox Grid.Row="1" Grid.Column="1"
                                  Height="30" Margin="4"
@@ -246,7 +246,7 @@
                                  Text="{Binding Current.WalkFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                         <TextBlock Grid.Row="2" Grid.Column="0"
-                                   Text="Run"
+                                   Text="{DynamicResource M_run}"
                                    Style="{StaticResource FieldLabel}" />
                         <TextBox Grid.Row="2" Grid.Column="1"
                                  Height="30" Margin="4"
@@ -265,7 +265,7 @@
                                  Text="{Binding Current.RunFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                         <TextBlock Grid.Row="3" Grid.Column="0"
-                                   Text="Sprint"
+                                   Text="{DynamicResource M_sprint}"
                                    Style="{StaticResource FieldLabel}" />
                         <TextBox Grid.Row="3" Grid.Column="1"
                                  Height="30" Margin="4"
@@ -283,7 +283,7 @@
                                  TextAlignment="Right"
                                  Text="{Binding Current.SprintFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                         <TextBlock Grid.Row="4" Grid.Column="0"
-                                   Text="Zipline"
+                                   Text="{DynamicResource M_zipline}"
                                    Style="{StaticResource FieldLabel}" />
                         <TextBox Grid.Row="4" Grid.Column="1"
                                  Height="30" Margin="4"
@@ -309,9 +309,9 @@
                     IsEnabled="{Binding HasCurrent}">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,12">
-                        <TextBlock Text="Advanced"
+                        <TextBlock Text="{DynamicResource M_advanced}"
                                    Style="{StaticResource SectionTitle}" />
-                        <TextBlock Text="Usually Don't Touch Axis and Direction if already set"
+                        <TextBlock Text="{DynamicResource M_usually_don_t_touch_axis_and_directi}"
                                    Style="{StaticResource SectionHintStyle}" />
                     </StackPanel>
 
@@ -332,7 +332,7 @@
                         </Grid.RowDefinitions>
 
                         <TextBlock Grid.Row="0" Grid.Column="0"
-                                   Text="Amplitude scale"
+                                   Text="{DynamicResource M_amplitude_scale}"
                                    Style="{StaticResource FieldLabel}" />
                         <TextBox Grid.Row="0" Grid.Column="1"
                                  Height="30"
@@ -341,34 +341,34 @@
                                  Text="{Binding Current.AmpScale, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                         <TextBlock Grid.Row="1" Grid.Column="0"
-                                   Text="Axis"
+                                   Text="{DynamicResource M_axis}"
                                    Style="{StaticResource FieldLabel}" />
                         <ComboBox Grid.Row="1" Grid.Column="1"
                                   Height="30"
                                   SelectedIndex="{Binding Current.AxisIndex}">
-                            <ComboBoxItem Content="Auto" />
-                            <ComboBoxItem Content="X" />
-                            <ComboBoxItem Content="Y" />
-                            <ComboBoxItem Content="Z" />
+                            <ComboBoxItem Content="{DynamicResource M_auto}" />
+                            <ComboBoxItem Content="{DynamicResource M_x}" />
+                            <ComboBoxItem Content="{DynamicResource M_y}" />
+                            <ComboBoxItem Content="{DynamicResource M_z}" />
                         </ComboBox>
 
                         <TextBlock Grid.Row="2" Grid.Column="0"
-                                   Text="Direction"
+                                   Text="{DynamicResource M_direction}"
                                    Style="{StaticResource FieldLabel}" />
                         <ComboBox Grid.Row="2" Grid.Column="1"
                                   Height="30"
                                   SelectedIndex="{Binding Current.SignIndex}">
-                            <ComboBoxItem Content="+" />
-                            <ComboBoxItem Content="-" />
+                            <ComboBoxItem Content="{DynamicResource M_x_2}" />
+                            <ComboBoxItem Content="{DynamicResource M_x_3}" />
                         </ComboBox>
 
                         <!-- Env attack tau -->
                         <StackPanel Grid.Row="3" Grid.Column="0"
                                     VerticalAlignment="Center"
-                                    ToolTip="Env attack tau — smooths amplitude across gait/state transitions, including run→walk and zipline transitions.">
-                            <TextBlock Text="Transition smoothing"
+                                    ToolTip="{DynamicResource M_env_attack_tau_smooths_amplitude_acr}">
+                            <TextBlock Text="{DynamicResource M_transition_smoothing}"
                                        Style="{StaticResource AdvancedParamTitle}" />
-                            <TextBlock Text="Higher = For motions to motions, smoother transitions · Lower = more responsive"
+                            <TextBlock Text="{DynamicResource M_higher_for_motions_to_motions_smooth}"
                                        Style="{StaticResource AdvancedParamHint}" />
                         </StackPanel>
                         <TextBox Grid.Row="3" Grid.Column="1"
@@ -376,16 +376,16 @@
                                  VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 ToolTip="Env attack tau"
+                                 ToolTip="{DynamicResource M_env_attack_tau}"
                                  Text="{Binding Current.EnvAttack, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                         <!-- Env freq tau -->
                         <StackPanel Grid.Row="4" Grid.Column="0"
                                     VerticalAlignment="Center"
-                                    ToolTip="Env freq tau — smooths changes in motion frequency.">
-                            <TextBlock Text="Frequency smoothing"
+                                    ToolTip="{DynamicResource M_env_freq_tau_smooths_changes_in_moti}">
+                            <TextBlock Text="{DynamicResource M_frequency_smoothing}"
                                        Style="{StaticResource AdvancedParamTitle}" />
-                            <TextBlock Text="Higher = slower frequency changes · Lower = quicker response"
+                            <TextBlock Text="{DynamicResource M_higher_slower_frequency_changes_lowe}"
                                        Style="{StaticResource AdvancedParamHint}" />
                         </StackPanel>
                         <TextBox Grid.Row="4" Grid.Column="1"
@@ -393,16 +393,16 @@
                                  VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 ToolTip="Env freq tau"
+                                 ToolTip="{DynamicResource M_env_freq_tau}"
                                  Text="{Binding Current.EnvFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                         <!-- Env to-idle tau -->
                         <StackPanel Grid.Row="5" Grid.Column="0"
                                     VerticalAlignment="Center"
-                                    ToolTip="Env to-idle tau — dedicated stop/tail smoothing. Triggered when the clip name contains &quot;stop&quot; or &quot;_to_idle&quot;.">
-                            <TextBlock Text="Stop smoothing"
+                                    ToolTip="{DynamicResource M_env_to_idle_tau_dedicated_stop_tail_}">
+                            <TextBlock Text="{DynamicResource M_stop_smoothing}"
                                        Style="{StaticResource AdvancedParamTitle}" />
-                            <TextBlock Text="For motions to stop · Higher = gentler slower stop · Lower = sharper faster stop"
+                            <TextBlock Text="{DynamicResource M_for_motions_to_stop_higher_gentler_s}"
                                        Style="{StaticResource AdvancedParamHint}" />
                         </StackPanel>
                         <TextBox Grid.Row="5" Grid.Column="1"
@@ -410,11 +410,11 @@
                                  VerticalAlignment="Center"
                                  VerticalContentAlignment="Center"
                                  TextAlignment="Right"
-                                 ToolTip="Env to-idle tau — clips containing &quot;stop&quot; or &quot;_to_idle&quot;"
+                                 ToolTip="{DynamicResource M_env_to_idle_tau_clips_containing_quo}"
                                  Text="{Binding Current.EnvIdle, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                         <TextBlock Grid.Row="6" Grid.Column="0"
-                                   Text="Native amplify"
+                                   Text="{DynamicResource M_native_amplify}"
                                    Style="{StaticResource FieldLabel}" />
                         <TextBox Grid.Row="6" Grid.Column="1"
                                  Height="30"
@@ -423,7 +423,7 @@
                                  Text="{Binding Current.NativeFactor, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                     </Grid>
 
-                    <CheckBox Content="Jump (legacy landing damped)"
+                    <CheckBox Content="{DynamicResource M_jump_legacy_landing_damped}"
                               Margin="0,12,0,0"
                               Foreground="Black"
                               IsChecked="{Binding Current.JumpEnabled}" />
@@ -432,7 +432,7 @@
 
             <!-- Apply -->
             <StackPanel Orientation="Horizontal" Margin="0,16,0,0">
-                <Button Content="Apply"
+                <Button Content="{DynamicResource M_apply}"
                         Width="140"
                         Height="32"
                         Command="{Binding ApplyCommand}" />

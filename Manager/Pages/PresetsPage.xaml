@@ -1,22 +1,22 @@
 <Page x:Class="SecondaryMotion.Manager.Pages.PresetsPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Presets" Loaded="OnLoaded" Unloaded="OnUnloaded">
+      Title="{DynamicResource P_presets}" Loaded="OnLoaded" Unloaded="OnUnloaded">
     <StackPanel Margin="24,16" MaxWidth="560" HorizontalAlignment="Left">
-        <TextBlock Text="Presets" Style="{StaticResource PageTitle}" />
+        <TextBlock Text="{DynamicResource P_presets}" Style="{StaticResource PageTitle}" />
 
-        <TextBlock Text="Select" Style="{StaticResource FieldLabel}" Margin="0,16,0,4" />
+        <TextBlock Text="{DynamicResource P_select}" Style="{StaticResource FieldLabel}" Margin="0,16,0,4" />
         <ComboBox Width="260" ItemsSource="{Binding Presets}" SelectedItem="{Binding Selected}" />
 
         <WrapPanel Margin="0,16,0,0">
-            <Button Content="Apply" Width="100" Command="{Binding ApplyCommand}" />
-            <Button Content="New" Width="90" Margin="8,0,0,0" Command="{Binding NewCommand}" />
-            <Button Content="Duplicate" Width="90" Margin="8,0,0,0" Command="{Binding DuplicateCommand}" />
-            <Button Content="Rename" Width="90" Margin="8,0,0,0" Command="{Binding RenameCommand}" />
-            <Button Content="Delete" Width="90" Margin="8,0,0,0" Command="{Binding DeleteCommand}" />
-            <Button Content="Import" Width="90" Margin="8,8,0,0" Command="{Binding ImportCommand}" />
-            <Button Content="Export" Width="90" Margin="8,8,0,0" Command="{Binding ExportCommand}" />
-            <Button Content="Reset" Width="90" Margin="8,8,0,0" Command="{Binding ResetCommand}" />
+            <Button Content="{DynamicResource P_apply}" Width="100" Command="{Binding ApplyCommand}" />
+            <Button Content="{DynamicResource P_new}" Width="90" Margin="8,0,0,0" Command="{Binding NewCommand}" />
+            <Button Content="{DynamicResource P_duplicate}" Width="90" Margin="8,0,0,0" Command="{Binding DuplicateCommand}" />
+            <Button Content="{DynamicResource P_rename}" Width="90" Margin="8,0,0,0" Command="{Binding RenameCommand}" />
+            <Button Content="{DynamicResource P_delete}" Width="90" Margin="8,0,0,0" Command="{Binding DeleteCommand}" />
+            <Button Content="{DynamicResource P_import}" Width="90" Margin="8,8,0,0" Command="{Binding ImportCommand}" />
+            <Button Content="{DynamicResource P_export}" Width="90" Margin="8,8,0,0" Command="{Binding ExportCommand}" />
+            <Button Content="{DynamicResource P_reset}" Width="90" Margin="8,8,0,0" Command="{Binding ResetCommand}" />
         </WrapPanel>
 
         <TextBlock Text="{Binding ApplyMessage}" Margin="0,16,0,0"

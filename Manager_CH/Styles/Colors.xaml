@@ -1,8 +1,0 @@
-<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-    <!-- Central color palette. Light theme: white bg, black text, dark blue accents. -->
-    <SolidColorBrush x:Key="AccentBrush" Color="#0B5EA8" />
-    <SolidColorBrush x:Key="DimBrush" Color="#555555" />
-    <SolidColorBrush x:Key="PaneBackgroundBrush" Color="#F2F2F2" />
-    <SolidColorBrush x:Key="DividerBrush" Color="#999999" />
-</ResourceDictionary>

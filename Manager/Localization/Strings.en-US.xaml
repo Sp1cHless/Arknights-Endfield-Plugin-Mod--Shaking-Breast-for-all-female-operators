@@ -1,0 +1,191 @@
+<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="C_advanced">Advanced</sys:String>
+    <sys:String x:Key="C_amplify_native">Amplify Native</sys:String>
+    <sys:String x:Key="C_amplitude_scale">Amplitude scale</sys:String>
+    <sys:String x:Key="C_apply">Apply</sys:String>
+    <sys:String x:Key="C_auto">Auto</sys:String>
+    <sys:String x:Key="C_axis">Axis</sys:String>
+    <sys:String x:Key="C_basic">Basic</sys:String>
+    <sys:String x:Key="C_character_specific_motion_settings">Character-specific motion settings</sys:String>
+    <sys:String x:Key="C_characters">Characters</sys:String>
+    <sys:String x:Key="C_delete_from_preset">Delete from preset</sys:String>
+    <sys:String x:Key="C_direction">Direction</sys:String>
+    <sys:String x:Key="C_display_name">Display name</sys:String>
+    <sys:String x:Key="C_down_degree">Down (degree)</sys:String>
+    <sys:String x:Key="C_edit_motion_data">Edit Motion data.</sys:String>
+    <sys:String x:Key="C_enabled">Enabled</sys:String>
+    <sys:String x:Key="C_env_attack_tau">Env attack tau</sys:String>
+    <sys:String x:Key="C_env_attack_tau_smooths_amplitude_acr">Env attack tau — smooths amplitude across gait/state transitions, including run→walk and zipline transitions.</sys:String>
+    <sys:String x:Key="C_env_freq_tau">Env freq tau</sys:String>
+    <sys:String x:Key="C_env_freq_tau_smooths_changes_in_moti">Env freq tau — smooths changes in motion frequency.</sys:String>
+    <sys:String x:Key="C_env_to_idle_tau_clips_containing_quo">Env to-idle tau — clips containing &amp;quot;stop&amp;quot; or &amp;quot;_to_idle&amp;quot;</sys:String>
+    <sys:String x:Key="C_env_to_idle_tau_dedicated_stop_tail_">Env to-idle tau — dedicated stop/tail smoothing. Triggered when the clip name contains &amp;quot;stop&amp;quot; or &amp;quot;_to_idle&amp;quot;.</sys:String>
+    <sys:String x:Key="C_frequency_hz">Frequency (Hz)</sys:String>
+    <sys:String x:Key="C_frequency_smoothing">Frequency smoothing</sys:String>
+    <sys:String x:Key="C_gait">Gait</sys:String>
+    <sys:String x:Key="C_higher_slower_frequency_changes_lowe">Higher = slower frequency changes · Lower = quicker response</sys:String>
+    <sys:String x:Key="C_higher_smoother_transitions_lower_mo">Higher = smoother transitions · Lower = more responsive</sys:String>
+    <sys:String x:Key="C_id_dev">ID (dev)</sys:String>
+    <sys:String x:Key="C_jump_legacy_landing_damped">Jump (legacy landing damped)</sys:String>
+    <sys:String x:Key="C_mode">Mode</sys:String>
+    <sys:String x:Key="C_native_amplify">Native amplify</sys:String>
+    <sys:String x:Key="C_original_off">Original (off)</sys:String>
+    <sys:String x:Key="C_refresh">Refresh</sys:String>
+    <sys:String x:Key="C_run">Run</sys:String>
+    <sys:String x:Key="C_select_a_character_to_edit">Select a character to edit</sys:String>
+    <sys:String x:Key="C_sprint">Sprint</sys:String>
+    <sys:String x:Key="C_stop_smoothing">Stop smoothing</sys:String>
+    <sys:String x:Key="C_stop_to_idle_only_higher_gentler_sto">Stop / to-idle only · Higher = gentler stop · Lower = sharper stop</sys:String>
+    <sys:String x:Key="C_synthetic">Synthetic</sys:String>
+    <sys:String x:Key="C_transition_smoothing">Transition smoothing</sys:String>
+    <sys:String x:Key="C_up_degree">Up (degree)</sys:String>
+    <sys:String x:Key="C_usually_don_t_touch">Usually Don't Touch</sys:String>
+    <sys:String x:Key="C_walk">Walk</sys:String>
+    <sys:String x:Key="C_x">X</sys:String>
+    <sys:String x:Key="C_x_2">+</sys:String>
+    <sys:String x:Key="C_x_3">-</sys:String>
+    <sys:String x:Key="C_y">Y</sys:String>
+    <sys:String x:Key="C_z">Z</sys:String>
+    <sys:String x:Key="C_zipline">Zipline</sys:String>
+    <sys:String x:Key="D_1_detect">1. Detect</sys:String>
+    <sys:String x:Key="D_2_scan_amp_save">2. Scan &amp;amp; Save</sys:String>
+    <sys:String x:Key="D_3_axis_tester">3. Axis Tester</sys:String>
+    <sys:String x:Key="D_4_validate">4. Validate</sys:String>
+    <sys:String x:Key="D_angle">Angle</sys:String>
+    <sys:String x:Key="D_axis">Axis</sys:String>
+    <sys:String x:Key="D_axis_test_needs_a_character_already_">Axis test needs a character already in the database (supported). 5s auto-stop even if the Manager crashes.</sys:String>
+    <sys:String x:Key="D_character">Character</sys:String>
+    <sys:String x:Key="D_database">Database</sys:String>
+    <sys:String x:Key="D_developer">Developer</sys:String>
+    <sys:String x:Key="D_direction">Direction</sys:String>
+    <sys:String x:Key="D_display_name_optional">Display name (optional):</sys:String>
+    <sys:String x:Key="D_fail_closed_unknown_characters_get_n"> (fail-closed: unknown characters get NO writes)</sys:String>
+    <sys:String x:Key="D_filter_comma_separated_keywords">Filter (comma-separated keywords)</sys:String>
+    <sys:String x:Key="D_l">L:</sys:String>
+    <sys:String x:Key="D_new_character_onboarding_detect_scan">New-character onboarding: Detect → Scan → pick bones → Save → Validate.</sys:String>
+    <sys:String x:Key="D_r">R:</sys:String>
+    <sys:String x:Key="D_save_to_database">Save to Database</sys:String>
+    <sys:String x:Key="D_save_writes_characters_default_json_">Save writes characters.default.json (backup .bak + atomic) with the picked bones, then hot-reloads the runtime.</sys:String>
+    <sys:String x:Key="D_scan">Scan</sys:String>
+    <sys:String x:Key="D_set_as_left">Set as Left</sys:String>
+    <sys:String x:Key="D_set_as_right">Set as Right</sys:String>
+    <sys:String x:Key="D_start">Start</sys:String>
+    <sys:String x:Key="D_stop">Stop</sys:String>
+    <sys:String x:Key="D_validate">Validate</sys:String>
+    <sys:String x:Key="D_x">X</sys:String>
+    <sys:String x:Key="D_x_2">+</sys:String>
+    <sys:String x:Key="D_x_3">-</sys:String>
+    <sys:String x:Key="D_y">Y</sys:String>
+    <sys:String x:Key="D_z">Z</sys:String>
+    <sys:String x:Key="M_advanced">Advanced</sys:String>
+    <sys:String x:Key="M_amplify_native">Amplify Native</sys:String>
+    <sys:String x:Key="M_amplitude_scale">Amplitude scale</sys:String>
+    <sys:String x:Key="M_apply">Apply</sys:String>
+    <sys:String x:Key="M_auto">Auto</sys:String>
+    <sys:String x:Key="M_axis">Axis</sys:String>
+    <sys:String x:Key="M_character">Character</sys:String>
+    <sys:String x:Key="M_current_status">Current status</sys:String>
+    <sys:String x:Key="M_direction">Direction</sys:String>
+    <sys:String x:Key="M_down_degree">Down (degree)</sys:String>
+    <sys:String x:Key="M_edit_motion_data_please_adjust_accor">Edit Motion data, please adjust according to different clothes.Dont touch frequency</sys:String>
+    <sys:String x:Key="M_enable_motion_for_this_character">Enable motion for this character</sys:String>
+    <sys:String x:Key="M_env_attack_tau">Env attack tau</sys:String>
+    <sys:String x:Key="M_env_attack_tau_smooths_amplitude_acr">Env attack tau — smooths amplitude across gait/state transitions, including run→walk and zipline transitions.</sys:String>
+    <sys:String x:Key="M_env_freq_tau">Env freq tau</sys:String>
+    <sys:String x:Key="M_env_freq_tau_smooths_changes_in_moti">Env freq tau — smooths changes in motion frequency.</sys:String>
+    <sys:String x:Key="M_env_to_idle_tau_clips_containing_quo">Env to-idle tau — clips containing &amp;quot;stop&amp;quot; or &amp;quot;_to_idle&amp;quot;</sys:String>
+    <sys:String x:Key="M_env_to_idle_tau_dedicated_stop_tail_">Env to-idle tau — dedicated stop/tail smoothing. Triggered when the clip name contains &amp;quot;stop&amp;quot; or &amp;quot;_to_idle&amp;quot;.</sys:String>
+    <sys:String x:Key="M_for_motions_to_stop_higher_gentler_s">For motions to stop · Higher = gentler slower stop · Lower = sharper faster stop</sys:String>
+    <sys:String x:Key="M_frequency_hz">Frequency (Hz)</sys:String>
+    <sys:String x:Key="M_frequency_smoothing">Frequency smoothing</sys:String>
+    <sys:String x:Key="M_gait">Gait</sys:String>
+    <sys:String x:Key="M_game">Game</sys:String>
+    <sys:String x:Key="M_higher_for_motions_to_motions_smooth">Higher = For motions to motions, smoother transitions · Lower = more responsive</sys:String>
+    <sys:String x:Key="M_higher_slower_frequency_changes_lowe">Higher = slower frequency changes · Lower = quicker response</sys:String>
+    <sys:String x:Key="M_jump_legacy_landing_damped">Jump (legacy landing damped)</sys:String>
+    <sys:String x:Key="M_main">Main</sys:String>
+    <sys:String x:Key="M_mode">Mode</sys:String>
+    <sys:String x:Key="M_native_amplify">Native amplify</sys:String>
+    <sys:String x:Key="M_original_off">Original (off)</sys:String>
+    <sys:String x:Key="M_plugin">Plugin</sys:String>
+    <sys:String x:Key="M_plugin_active_global_switch_off_clea">Plugin active (global switch — off = clean native game)</sys:String>
+    <sys:String x:Key="M_preset">Preset</sys:String>
+    <sys:String x:Key="M_run">Run</sys:String>
+    <sys:String x:Key="M_shaking_and_jumping_breast">Shaking and Jumping Breast !</sys:String>
+    <sys:String x:Key="M_sprint">Sprint</sys:String>
+    <sys:String x:Key="M_start_the_game_to_edit_the_current_c">ⓘ  Start the game to edit the current character</sys:String>
+    <sys:String x:Key="M_stop_smoothing">Stop smoothing</sys:String>
+    <sys:String x:Key="M_synthetic">Synthetic</sys:String>
+    <sys:String x:Key="M_transition_smoothing">Transition smoothing</sys:String>
+    <sys:String x:Key="M_up_degree">Up (degree)</sys:String>
+    <sys:String x:Key="M_usually_don_t_touch_axis_and_directi">Usually Don't Touch Axis and Direction if already set</sys:String>
+    <sys:String x:Key="M_walk">Walk</sys:String>
+    <sys:String x:Key="M_x">X</sys:String>
+    <sys:String x:Key="M_x_2">+</sys:String>
+    <sys:String x:Key="M_x_3">-</sys:String>
+    <sys:String x:Key="M_y">Y</sys:String>
+    <sys:String x:Key="M_z">Z</sys:String>
+    <sys:String x:Key="M_zipline">Zipline</sys:String>
+    <sys:String x:Key="N_by_sp1chless">By Sp1cHless</sys:String>
+    <sys:String x:Key="N_characters">Characters</sys:String>
+    <sys:String x:Key="N_developer">Developer</sys:String>
+    <sys:String x:Key="N_main">Main</sys:String>
+    <sys:String x:Key="N_presets">Presets</sys:String>
+    <sys:String x:Key="N_shakingbreast_manager">ShakingBreast Manager</sys:String>
+    <sys:String x:Key="P_apply">Apply</sys:String>
+    <sys:String x:Key="P_delete">Delete</sys:String>
+    <sys:String x:Key="P_duplicate">Duplicate</sys:String>
+    <sys:String x:Key="P_export">Export</sys:String>
+    <sys:String x:Key="P_import">Import</sys:String>
+    <sys:String x:Key="P_new">New</sys:String>
+    <sys:String x:Key="P_presets">Presets</sys:String>
+    <sys:String x:Key="P_rename">Rename</sys:String>
+    <sys:String x:Key="P_reset">Reset</sys:String>
+    <sys:String x:Key="P_select">Select</sys:String>
+    <sys:String x:Key="Msg_Applied">Applied OK (rev {0})</sys:String>
+    <sys:String x:Key="Msg_ApplyFailed">Apply failed: {0}</sys:String>
+    <sys:String x:Key="Msg_Applying">Applying...</sys:String>
+    <sys:String x:Key="Msg_Cancel">Cancel</sys:String>
+    <sys:String x:Key="Msg_DbReloaded">Database reloaded - {0} characters</sys:String>
+    <sys:String x:Key="Msg_DeleteConfirm">Delete "{0}" ({1})?
+
+Its database entry and preset overrides will be removed. The character returns to unknown and can be re-scanned in the Developer page.</sys:String>
+    <sys:String x:Key="Msg_DeleteConfirmTitle">Secondary Motion</sys:String>
+    <sys:String x:Key="Msg_DupPresetPrompt">New preset name:</sys:String>
+    <sys:String x:Key="Msg_DupPresetTitle">Duplicate Preset</sys:String>
+    <sys:String x:Key="Msg_GameFolderRequired">A game folder is required.</sys:String>
+    <sys:String x:Key="Msg_ImportPresetPrompt">Preset name:</sys:String>
+    <sys:String x:Key="Msg_ImportPresetTitle">Import Preset</sys:String>
+    <sys:String x:Key="Msg_Installed">Installed.
+
+Game data folder: {0}
+Plugin dll: deployed to {1}
+
+Start the game and it will work. You can re-tune everything here.</sys:String>
+    <sys:String x:Key="Msg_LangChinese">简体中文</sys:String>
+    <sys:String x:Key="Msg_LangEnglish">English</sys:String>
+    <sys:String x:Key="Msg_Language">Language</sys:String>
+    <sys:String x:Key="Msg_NewPresetPrompt">Preset name:</sys:String>
+    <sys:String x:Key="Msg_NewPresetTitle">New Preset</sys:String>
+    <sys:String x:Key="Msg_NoCharDetected">No character detected - enter the game first</sys:String>
+    <sys:String x:Key="Msg_NoCharId">No character id</sys:String>
+    <sys:String x:Key="Msg_Ok">OK</sys:String>
+    <sys:String x:Key="Msg_PresetDeleteMsg">Delete preset '{0}'?</sys:String>
+    <sys:String x:Key="Msg_PresetDeleteTitle">Delete</sys:String>
+    <sys:String x:Key="Msg_PresetResetMsg">Reset preset '{0}' to database defaults?</sys:String>
+    <sys:String x:Key="Msg_PresetResetTitle">Reset</sys:String>
+    <sys:String x:Key="Msg_RenamePresetPrompt">New name:</sys:String>
+    <sys:String x:Key="Msg_RenamePresetTitle">Rename Preset</sys:String>
+    <sys:String x:Key="Msg_SavedForLater">Saved - will apply when game starts</sys:String>
+    <sys:String x:Key="Msg_ScanDone">Done - {0} bones dumped ({1} shown)</sys:String>
+    <sys:String x:Key="Msg_Scanning">Scanning... (check the game)</sys:String>
+    <sys:String x:Key="Msg_SetupErrorTitle">Secondary Motion</sys:String>
+    <sys:String x:Key="Msg_SetupFailed">Setup failed: {0}</sys:String>
+    <sys:String x:Key="Msg_SetupFailedTitle">Secondary Motion - setup failed</sys:String>
+    <sys:String x:Key="Msg_SetupNotGameFolder">The selected folder does not look like the game folder (no plugins\, Endfield.exe or UnityPlayer.dll found).
+
+Pick the folder that contains Endfield.exe.</sys:String>
+    <sys:String x:Key="Msg_SwitchFailed">Switch failed: {0}</sys:String>
+</ResourceDictionary>

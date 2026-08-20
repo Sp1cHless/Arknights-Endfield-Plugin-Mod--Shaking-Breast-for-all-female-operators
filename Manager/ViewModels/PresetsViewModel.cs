@@ -74,7 +74,7 @@ public class PresetsViewModel : ViewModelBase {
         => Confirm?.Invoke(title, msg) ?? false;
 
     void New() {
-        string? name = Ask("New Preset", "Preset name:", "");
+        string? name = Ask(L10n.Get("Msg_NewPresetTitle"), L10n.Get("Msg_NewPresetPrompt"), "");
         if (string.IsNullOrEmpty(name)) return;
         var presets = new PresetService(_ctx.BaseDir, App.ManagerDir);
         _ctx.ReloadPresetIntoModel(name);          // build model (db + empty preset)
@@ -86,7 +86,7 @@ public class PresetsViewModel : ViewModelBase {
     }
 
     void Duplicate() {
-        string? name = Ask("Duplicate Preset", "New preset name:", _ctx.ActivePreset + "_copy");
+        string? name = Ask(L10n.Get("Msg_DupPresetTitle"), L10n.Get("Msg_DupPresetPrompt"), _ctx.ActivePreset + "_copy");
         if (string.IsNullOrEmpty(name)) return;
         var presets = new PresetService(_ctx.BaseDir, App.ManagerDir);
         string src = presets.PathOf(_ctx.ActivePreset);
@@ -97,7 +97,7 @@ public class PresetsViewModel : ViewModelBase {
     }
 
     void Rename() {
-        string? name = Ask("Rename Preset", "New name:", _ctx.ActivePreset);
+        string? name = Ask(L10n.Get("Msg_RenamePresetTitle"), L10n.Get("Msg_RenamePresetPrompt"), _ctx.ActivePreset);
         if (string.IsNullOrEmpty(name) || name == _ctx.ActivePreset) return;
         var presets = new PresetService(_ctx.BaseDir, App.ManagerDir);
         string src = presets.PathOf(_ctx.ActivePreset);
@@ -116,7 +116,7 @@ public class PresetsViewModel : ViewModelBase {
 
     void Delete() {
         if (_ctx.ActivePreset == "Default") return;
-        if (!Confirm_("Delete", "Delete preset '" + _ctx.ActivePreset + "'?")) return;
+        if (!Confirm_(L10n.Get("Msg_PresetDeleteTitle"), L10n.Get("Msg_PresetDeleteMsg", _ctx.ActivePreset))) return;
         var presets = new PresetService(_ctx.BaseDir, App.ManagerDir);
         ChangeLog.Append("[Preset] delete: " + _ctx.ActivePreset);
         presets.Delete(_ctx.ActivePreset);
@@ -129,7 +129,7 @@ public class PresetsViewModel : ViewModelBase {
     void Import() {
         var dlg = new OpenFileDialog { Filter = "JSON|*.json", Title = "Import preset" };
         if (dlg.ShowDialog() != true) return;
-        string? name = Ask("Import Preset", "Preset name:", Path.GetFileNameWithoutExtension(dlg.FileName));
+        string? name = Ask(L10n.Get("Msg_ImportPresetTitle"), L10n.Get("Msg_ImportPresetPrompt"), Path.GetFileNameWithoutExtension(dlg.FileName));
         if (string.IsNullOrEmpty(name)) return;
         var presets = new PresetService(_ctx.BaseDir, App.ManagerDir);
         File.Copy(dlg.FileName, presets.PathOf(name), true);
@@ -149,7 +149,7 @@ public class PresetsViewModel : ViewModelBase {
     }
 
     void ResetPreset() {
-        if (!Confirm_("Reset", "Reset preset '" + _ctx.ActivePreset + "' to database defaults?")) return;
+        if (!Confirm_(L10n.Get("Msg_PresetResetTitle"), L10n.Get("Msg_PresetResetMsg", _ctx.ActivePreset))) return;
         _ctx.ResetFromDb();
         _ctx.Apply();
         RefreshModelNotified();

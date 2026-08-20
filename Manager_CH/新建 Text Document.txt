@@ -1,3 +1,0 @@
-taskkill /F /IM SecondaryMotion.Manager.exe
-
-dotnet build

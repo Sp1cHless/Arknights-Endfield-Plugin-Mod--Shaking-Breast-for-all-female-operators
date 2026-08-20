@@ -1,81 +1,81 @@
 <Page x:Class="SecondaryMotion.Manager.Pages.DeveloperPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Developer" Loaded="OnLoaded" Unloaded="OnUnloaded">
+      Title="{DynamicResource D_developer}" Loaded="OnLoaded" Unloaded="OnUnloaded">
     <ScrollViewer VerticalScrollBarVisibility="Auto">
     <StackPanel Margin="24,16" MaxWidth="680" HorizontalAlignment="Left">
-        <TextBlock Text="Developer" Style="{StaticResource PageTitle}" />
-        <TextBlock Text="New-character onboarding: Detect → Scan → pick bones → Save → Validate."
+        <TextBlock Text="{DynamicResource D_developer}" Style="{StaticResource PageTitle}" />
+        <TextBlock Text="{DynamicResource D_new_character_onboarding_detect_scan}"
                    Foreground="Gray" TextWrapping="Wrap" />
 
         <!-- 1. Detect -->
-        <TextBlock Text="1. Detect" Style="{StaticResource SectionTitle}" Margin="0,16,0,4" />
+        <TextBlock Text="{DynamicResource D_1_detect}" Style="{StaticResource SectionTitle}" Margin="0,16,0,4" />
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="110" /><ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions><RowDefinition /><RowDefinition /></Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="Character" Style="{StaticResource FieldLabel}" />
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="{DynamicResource D_character}" Style="{StaticResource FieldLabel}" />
             <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Character}" />
-            <TextBlock Grid.Row="1" Grid.Column="0" Text="Database" Style="{StaticResource FieldLabel}" />
+            <TextBlock Grid.Row="1" Grid.Column="0" Text="{DynamicResource D_database}" Style="{StaticResource FieldLabel}" />
             <TextBlock Grid.Row="1" Grid.Column="1">
                 <Run Text="{Binding DbStatus}" />
-                <Run Text=" (fail-closed: unknown characters get NO writes)" Foreground="Gray" FontSize="10" />
+                <Run Text="{DynamicResource D_fail_closed_unknown_characters_get_n}" Foreground="Gray" FontSize="10" />
             </TextBlock>
         </Grid>
 
         <!-- 2. Scan + Save (new character registration) -->
-        <TextBlock Text="2. Scan &amp; Save" Style="{StaticResource SectionTitle}" Margin="0,16,0,4" />
+        <TextBlock Text="{DynamicResource D_2_scan_amp_save}" Style="{StaticResource SectionTitle}" Margin="0,16,0,4" />
         <StackPanel Orientation="Horizontal">
-            <Button Content="Scan" Command="{Binding ScanCommand}" Width="100" />
-            <TextBlock Text="Filter (comma-separated keywords)" Style="{StaticResource FieldLabel}" Margin="10,0,0,0" />
+            <Button Content="{DynamicResource D_scan}" Command="{Binding ScanCommand}" Width="100" />
+            <TextBlock Text="{DynamicResource D_filter_comma_separated_keywords}" Style="{StaticResource FieldLabel}" Margin="10,0,0,0" />
             <TextBox Width="150" Text="{Binding BoneFilter, Mode=TwoWay}" />
             <TextBlock Text="{Binding ScanStatus}" VerticalAlignment="Center" Margin="10,0,0,0" />
         </StackPanel>
         <ListBox ItemsSource="{Binding Bones}" Height="150" Margin="0,8,0,0"
                  SelectionMode="Single" SelectedItem="{Binding SelectedBone}" />
         <StackPanel Orientation="Horizontal" Margin="0,6,0,0">
-            <Button Content="Set as Left" Width="100" Command="{Binding SetLeftCommand}" />
-            <Button Content="Set as Right" Width="100" Margin="6,0,0,0" Command="{Binding SetRightCommand}" />
-            <TextBlock Text="L:" Style="{StaticResource FieldLabel}" Margin="12,0,0,0" />
+            <Button Content="{DynamicResource D_set_as_left}" Width="100" Command="{Binding SetLeftCommand}" />
+            <Button Content="{DynamicResource D_set_as_right}" Width="100" Margin="6,0,0,0" Command="{Binding SetRightCommand}" />
+            <TextBlock Text="{DynamicResource D_l}" Style="{StaticResource FieldLabel}" Margin="12,0,0,0" />
             <TextBlock Text="{Binding LeftBone}" VerticalAlignment="Center" MaxWidth="140" TextTrimming="CharacterEllipsis" />
-            <TextBlock Text="R:" Style="{StaticResource FieldLabel}" Margin="12,0,0,0" />
+            <TextBlock Text="{DynamicResource D_r}" Style="{StaticResource FieldLabel}" Margin="12,0,0,0" />
             <TextBlock Text="{Binding RightBone}" VerticalAlignment="Center" MaxWidth="140" TextTrimming="CharacterEllipsis" />
         </StackPanel>
         <StackPanel Orientation="Horizontal" Margin="0,8,0,0">
-            <TextBlock Text="Display name (optional):" Style="{StaticResource FieldLabel}" />
+            <TextBlock Text="{DynamicResource D_display_name_optional}" Style="{StaticResource FieldLabel}" />
             <TextBox Width="160" Text="{Binding NewDisplayName, Mode=TwoWay}" />
-            <Button Content="Save to Database" Command="{Binding SaveCommand}" Width="150" Margin="12,0,0,0" />
+            <Button Content="{DynamicResource D_save_to_database}" Command="{Binding SaveCommand}" Width="150" Margin="12,0,0,0" />
         </StackPanel>
-        <TextBlock Text="Save writes characters.default.json (backup .bak + atomic) with the picked bones, then hot-reloads the runtime."
+        <TextBlock Text="{DynamicResource D_save_writes_characters_default_json_}"
                    Foreground="Gray" FontSize="10" Margin="0,4,0,0" TextWrapping="Wrap" />
 
         <!-- 3. Axis Tester -->
-        <TextBlock Text="3. Axis Tester" Style="{StaticResource SectionTitle}" Margin="0,16,0,4" />
+        <TextBlock Text="{DynamicResource D_3_axis_tester}" Style="{StaticResource SectionTitle}" Margin="0,16,0,4" />
         <StackPanel Orientation="Horizontal">
-            <TextBlock Text="Axis" Style="{StaticResource FieldLabel}" />
+            <TextBlock Text="{DynamicResource D_axis}" Style="{StaticResource FieldLabel}" />
             <ComboBox Width="70" SelectedIndex="{Binding AxisIndex}">
-                <ComboBoxItem Content="X" /><ComboBoxItem Content="Y" /><ComboBoxItem Content="Z" />
+                <ComboBoxItem Content="{DynamicResource D_x}" /><ComboBoxItem Content="{DynamicResource D_y}" /><ComboBoxItem Content="{DynamicResource D_z}" />
             </ComboBox>
-            <TextBlock Text="Direction" Style="{StaticResource FieldLabel}" Margin="12,0,0,0" />
+            <TextBlock Text="{DynamicResource D_direction}" Style="{StaticResource FieldLabel}" Margin="12,0,0,0" />
             <ComboBox Width="60" SelectedIndex="{Binding SignIndex}">
-                <ComboBoxItem Content="+" /><ComboBoxItem Content="-" />
+                <ComboBoxItem Content="{DynamicResource D_x_2}" /><ComboBoxItem Content="{DynamicResource D_x_3}" />
             </ComboBox>
-            <TextBlock Text="Angle" Style="{StaticResource FieldLabel}" Margin="12,0,0,0" />
+            <TextBlock Text="{DynamicResource D_angle}" Style="{StaticResource FieldLabel}" Margin="12,0,0,0" />
             <TextBox Width="70" Text="{Binding TestAngle, Mode=TwoWay, Converter={StaticResource DoubleToText}}"/>
-            <Button Content="Start" Width="80" Margin="12,0,0,0"
+            <Button Content="{DynamicResource D_start}" Width="80" Margin="12,0,0,0"
                        Command="{Binding StartTestCommand}"
                        IsEnabled="{Binding IsSupported}" />
-            <Button Content="Stop" Width="80" Margin="6,0,0,0"
+            <Button Content="{DynamicResource D_stop}" Width="80" Margin="6,0,0,0"
                        Command="{Binding StopTestCommand}" />
         </StackPanel>
-        <TextBlock Text="Axis test needs a character already in the database (supported). 5s auto-stop even if the Manager crashes."
+        <TextBlock Text="{DynamicResource D_axis_test_needs_a_character_already_}"
                    Foreground="Gray" FontSize="10" Margin="0,4,0,0" />
 
         <!-- 4. Validate (bottom) -->
-        <TextBlock Text="4. Validate" Style="{StaticResource SectionTitle}" Margin="0,16,0,4" />
+        <TextBlock Text="{DynamicResource D_4_validate}" Style="{StaticResource SectionTitle}" Margin="0,16,0,4" />
         <StackPanel Orientation="Horizontal">
-            <Button Content="Validate" Command="{Binding ValidateCommand}" Width="100" />
+            <Button Content="{DynamicResource D_validate}" Command="{Binding ValidateCommand}" Width="100" />
             <TextBlock Text="{Binding SaveStatus}" VerticalAlignment="Center" Margin="10,0,0,0"
                        Foreground="{StaticResource AccentBrush}" />
         </StackPanel>

@@ -1,7 +1,7 @@
 @echo off
 rem ============================================================
-rem publish_release.bat - build runtime, verify, then publish BOTH
-rem language versions (EN + ZH) and zip them.
+rem publish_release.bat - build runtime, verify, publish the SINGLE
+rem Manager once, then assemble EN + ZH language packages.
 rem Usage: publish_release.bat [version-tag]   (default auto patch+1)
 rem ============================================================
 setlocal
@@ -23,15 +23,20 @@ echo [2/5] Verifying ...
 call "%ROOT%verify.bat" <nul
 if errorlevel 1 ( echo [ERROR] verify.bat failed & exit /b 1 )
 
-echo [3/5] English package ...
-call "%ROOT%assemble_one.bat" EN "%ROOT%Manager" "%VER%"
+echo [3/5] Publishing Manager (single build, self-contained win-x64) ...
+if exist "%DIST%\staging_app" rmdir /s /q "%DIST%\staging_app"
+mkdir "%DIST%\staging_app"
+"%LOCALAPPDATA%\Microsoft\dotnet\dotnet.exe" publish "%ROOT%Manager\SecondaryMotion.Manager.csproj" -c Release -r win-x64 --self-contained true -o "%DIST%\staging_app"
+if errorlevel 1 ( echo [ERROR] dotnet publish failed & exit /b 1 )
+
+echo [4/5] English package ...
+call "%ROOT%assemble_one.bat" EN "%VER%"
 if errorlevel 1 ( echo [ERROR] EN package failed & exit /b 1 )
 
-echo [4/5] Chinese package ...
-call "%ROOT%assemble_one.bat" ZH "%ROOT%Manager_CH" "%VER%"
+echo [5/5] Chinese package ...
+call "%ROOT%assemble_one.bat" ZH "%VER%"
 if errorlevel 1 ( echo [ERROR] ZH package failed & exit /b 1 )
 
-echo [5/5] Hashes ...
 echo %VER%> "%DIST%\last_version.txt"
 echo.
 echo ==========================================

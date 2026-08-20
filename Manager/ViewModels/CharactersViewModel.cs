@@ -9,6 +9,10 @@ using SecondaryMotion.Manager.Services;
 namespace SecondaryMotion.Manager.ViewModels;
 
 public class CharacterItem : ViewModelBase {
+
+    // record every user edit so "my change had no effect" can be traced
+    static void LogEdit(string field, object v) =>
+        Services.ChangeLog.Append("[Edit] " + field + " = " + v);
     public CharacterData Data { get; }
     public CharacterItem(CharacterData d) { Data = d; }
 
@@ -33,30 +37,30 @@ public class CharacterItem : ViewModelBase {
         }
     }
 
-    public double AmpScale { get => Data.AmpScale; set { Data.AmpScale = value; OnPropertyChanged(); } }
+    public double AmpScale { get => Data.AmpScale; set { Data.AmpScale = value; LogEdit("AmpScale", value); OnPropertyChanged(); } }
 
-    public double IdleAmp { get => Data.Amp[0]; set { Data.Amp[0] = value; OnPropertyChanged(); } }
-    public double WalkAmp { get => Data.Amp[1]; set { Data.Amp[1] = value; OnPropertyChanged(); } }
-    public double RunAmp { get => Data.Amp[2]; set { Data.Amp[2] = value; OnPropertyChanged(); } }
-    public double SprintAmp { get => Data.Amp[3]; set { Data.Amp[3] = value; OnPropertyChanged(); } }
-    public double ZiplineAmp { get => Data.Amp[4]; set { Data.Amp[4] = value; OnPropertyChanged(); } }
+    public double IdleAmp { get => Data.Amp[0]; set { Data.Amp[0] = value; LogEdit("IdleAmp", value); OnPropertyChanged(); } }
+    public double WalkAmp { get => Data.Amp[1]; set { Data.Amp[1] = value; LogEdit("WalkAmp", value); OnPropertyChanged(); } }
+    public double RunAmp { get => Data.Amp[2]; set { Data.Amp[2] = value; LogEdit("RunAmp", value); OnPropertyChanged(); } }
+    public double SprintAmp { get => Data.Amp[3]; set { Data.Amp[3] = value; LogEdit("SprintAmp", value); OnPropertyChanged(); } }
+    public double ZiplineAmp { get => Data.Amp[4]; set { Data.Amp[4] = value; LogEdit("ZiplineAmp", value); OnPropertyChanged(); } }
 
     // down amplitudes.  RUNTIME NAMING NOTE: the amplitude_deg channel
     // swings the FIRST half-cycle which in-game is the DOWNWARD swing;
     // amplitude_down_deg is the UPWARD swing.  The UI names are swapped
     // against the field names (Up column binds AmpDown etc.).  Display
     // defaults to the symmetric value (= up) when no explicit down is set.
-    public double IdleDown { get => Data.AmpDown[0] > 0 ? Data.AmpDown[0] : Data.Amp[0]; set { Data.AmpDown[0] = value; OnPropertyChanged(); } }
-    public double WalkDown { get => Data.AmpDown[1] > 0 ? Data.AmpDown[1] : Data.Amp[1]; set { Data.AmpDown[1] = value; OnPropertyChanged(); } }
-    public double RunDown { get => Data.AmpDown[2] > 0 ? Data.AmpDown[2] : Data.Amp[2]; set { Data.AmpDown[2] = value; OnPropertyChanged(); } }
-    public double SprintDown { get => Data.AmpDown[3] > 0 ? Data.AmpDown[3] : Data.Amp[3]; set { Data.AmpDown[3] = value; OnPropertyChanged(); } }
-    public double ZiplineDown { get => Data.AmpDown[4] > 0 ? Data.AmpDown[4] : Data.Amp[4]; set { Data.AmpDown[4] = value; OnPropertyChanged(); } }
+    public double IdleDown { get => Data.AmpDown[0] > 0 ? Data.AmpDown[0] : Data.Amp[0]; set { Data.AmpDown[0] = value; LogEdit("IdleDown", value); OnPropertyChanged(); } }
+    public double WalkDown { get => Data.AmpDown[1] > 0 ? Data.AmpDown[1] : Data.Amp[1]; set { Data.AmpDown[1] = value; LogEdit("WalkDown", value); OnPropertyChanged(); } }
+    public double RunDown { get => Data.AmpDown[2] > 0 ? Data.AmpDown[2] : Data.Amp[2]; set { Data.AmpDown[2] = value; LogEdit("RunDown", value); OnPropertyChanged(); } }
+    public double SprintDown { get => Data.AmpDown[3] > 0 ? Data.AmpDown[3] : Data.Amp[3]; set { Data.AmpDown[3] = value; LogEdit("SprintDown", value); OnPropertyChanged(); } }
+    public double ZiplineDown { get => Data.AmpDown[4] > 0 ? Data.AmpDown[4] : Data.Amp[4]; set { Data.AmpDown[4] = value; LogEdit("ZiplineDown", value); OnPropertyChanged(); } }
 
-    public double IdleFreq { get => Data.Freq[0]; set { Data.Freq[0] = value; OnPropertyChanged(); } }
-    public double WalkFreq { get => Data.Freq[1]; set { Data.Freq[1] = value; OnPropertyChanged(); } }
-    public double RunFreq { get => Data.Freq[2]; set { Data.Freq[2] = value; OnPropertyChanged(); } }
-    public double SprintFreq { get => Data.Freq[3]; set { Data.Freq[3] = value; OnPropertyChanged(); } }
-    public double ZiplineFreq { get => Data.Freq[4]; set { Data.Freq[4] = value; OnPropertyChanged(); } }
+    public double IdleFreq { get => Data.Freq[0]; set { Data.Freq[0] = value; LogEdit("IdleFreq", value); OnPropertyChanged(); } }
+    public double WalkFreq { get => Data.Freq[1]; set { Data.Freq[1] = value; LogEdit("WalkFreq", value); OnPropertyChanged(); } }
+    public double RunFreq { get => Data.Freq[2]; set { Data.Freq[2] = value; LogEdit("RunFreq", value); OnPropertyChanged(); } }
+    public double SprintFreq { get => Data.Freq[3]; set { Data.Freq[3] = value; LogEdit("SprintFreq", value); OnPropertyChanged(); } }
+    public double ZiplineFreq { get => Data.Freq[4]; set { Data.Freq[4] = value; LogEdit("ZiplineFreq", value); OnPropertyChanged(); } }
 
     public int AxisIndex {
         get => Data.Axis.Length == 0 ? 0 : Array.IndexOf(new[] { "X", "Y", "Z" }, Data.Axis) + 1;
@@ -66,13 +70,13 @@ public class CharacterItem : ViewModelBase {
         }
     }
 
-    public int SignIndex { get => Data.AxisSign < 0 ? 1 : 0; set { Data.AxisSign = value == 0 ? 1 : -1; OnPropertyChanged(); } }
+    public int SignIndex { get => Data.AxisSign < 0 ? 1 : 0; set { Data.AxisSign = value == 0 ? 1 : -1; LogEdit("SignIndex", value); OnPropertyChanged(); } }
 
-    public double EnvAttack { get => Data.EnvAttack; set { Data.EnvAttack = value; OnPropertyChanged(); } }
-    public double EnvFreq { get => Data.EnvFreq; set { Data.EnvFreq = value; OnPropertyChanged(); } }
-    public double EnvIdle { get => Data.EnvIdle; set { Data.EnvIdle = value; OnPropertyChanged(); } }
-    public double NativeFactor { get => Data.NativeFactor; set { Data.NativeFactor = value; OnPropertyChanged(); } }
-    public bool JumpEnabled { get => Data.JumpEnabled; set { Data.JumpEnabled = value; OnPropertyChanged(); } }
+    public double EnvAttack { get => Data.EnvAttack; set { Data.EnvAttack = value; LogEdit("EnvAttack", value); OnPropertyChanged(); } }
+    public double EnvFreq { get => Data.EnvFreq; set { Data.EnvFreq = value; LogEdit("EnvFreq", value); OnPropertyChanged(); } }
+    public double EnvIdle { get => Data.EnvIdle; set { Data.EnvIdle = value; LogEdit("EnvIdle", value); OnPropertyChanged(); } }
+    public double NativeFactor { get => Data.NativeFactor; set { Data.NativeFactor = value; LogEdit("NativeFactor", value); OnPropertyChanged(); } }
+    public bool JumpEnabled { get => Data.JumpEnabled; set { Data.JumpEnabled = value; LogEdit("JumpEnabled", value); OnPropertyChanged(); } }
 }
 
 public class CharactersViewModel : ViewModelBase {
@@ -114,10 +118,9 @@ public class CharactersViewModel : ViewModelBase {
         string id = Selected.Data.Id;
         string name = Selected.Data.DisplayName.Length > 0 ? Selected.Data.DisplayName : id;
         var ask = System.Windows.MessageBox.Show(
-            "Delete \"" + name + "\" (" + id + ")?\n\n" +
-            "Its database entry and preset overrides will be removed. " +
-            "The character returns to unknown and can be re-scanned and re-recorded in the Developer page.",
-            "Secondary Motion", System.Windows.MessageBoxButton.YesNo,
+            L10n.Get("Msg_DeleteConfirm", name, id),
+            L10n.Get("Msg_DeleteConfirmTitle"),
+            System.Windows.MessageBoxButton.YesNo,
             System.Windows.MessageBoxImage.Warning);
         if (ask != System.Windows.MessageBoxResult.Yes) return;
         ChangeLog.Append("[Character] delete: " + name + " (" + id + ")");

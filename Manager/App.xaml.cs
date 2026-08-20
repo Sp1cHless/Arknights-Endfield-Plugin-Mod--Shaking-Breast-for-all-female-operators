@@ -10,15 +10,56 @@ namespace SecondaryMotion.Manager;
 public partial class App : Application {
     public static AppCtx Ctx = null!;
     public static string ManagerDir = "";
+    public static string CurrentLang = "en-US";
+
+    // Merge the language string dictionary into Application resources.
+    static void LoadStrings(string lang) {
+        var dict = new ResourceDictionary {
+            Source = new Uri("Localization/Strings." + lang + ".xaml", UriKind.Relative)
+        };
+        Current.Resources.MergedDictionaries.Add(dict);
+    }
+
+    // Runtime language switch: swap the strings dictionary, persist the
+    // choice, let DynamicResource bindings update live.
+    public static void SwitchLanguage(string lang) {
+        if (lang == CurrentLang) return;
+        CurrentLang = lang;
+        var res = Current.Resources;
+        for (int i = res.MergedDictionaries.Count - 1; i >= 0; i--)
+            if (res.MergedDictionaries[i].Source != null &&
+                res.MergedDictionaries[i].Source.OriginalString.Contains("Localization/Strings."))
+                res.MergedDictionaries.RemoveAt(i);
+        LoadStrings(lang);
+        try {
+            new SettingsService(ManagerDir).SaveLanguage(lang);
+        } catch { }
+    }
 
     protected override void OnStartup(StartupEventArgs e) {
         base.OnStartup(e);
         try {
             ManagerDir = AppDomain.CurrentDomain.BaseDirectory;
             var settings = new SettingsService(ManagerDir);
+            // language: explicit setting wins, then the package's
+            // default_lang.txt (set by the build), then follow the system
+            // display language (zh -> Simplified Chinese, anything else -> EN)
+            CurrentLang = settings.Language;
+            if (CurrentLang.Length == 0) {
+                try {
+                    var dl = Path.Combine(ManagerDir, "default_lang.txt");
+                    if (File.Exists(dl))
+                        CurrentLang = File.ReadAllText(dl).Trim();
+                } catch { }
+            }
+            if (CurrentLang.Length == 0)
+                CurrentLang = System.Globalization.CultureInfo.InstalledUICulture
+                    .TwoLetterISOLanguageName == "zh" ? "zh-CN" : "en-US";
+            LoadStrings(CurrentLang);
             var diag = new StringBuilder();
             diag.AppendLine("manager_dir: " + ManagerDir);
             diag.AppendLine("settings.game_data_dir: " + (settings.GameDataDir ?? "(none)"));
+            diag.AppendLine("language: " + CurrentLang);
 
             // Data root: settings.game_data_dir (recommended — Manager lives
             // in its own folder).  When the setting is missing/invalid the
@@ -39,7 +80,7 @@ public partial class App : Application {
                             "e.g. ...\\Endfield Game)"
                 };
                 if (dlg.ShowDialog() != true) {
-                    MessageBox.Show("A game folder is required.",
+                    MessageBox.Show(L10n.Get("Msg_GameFolderRequired"),
                                     "Secondary Motion", MessageBoxButton.OK,
                                     MessageBoxImage.Warning);
                     Shutdown(1);
@@ -48,17 +89,15 @@ public partial class App : Application {
                 string gameRoot = dlg.FolderName;
                 var setupMsg = FirstRunSetup(gameRoot);
                 if (setupMsg != null) {
-                    MessageBox.Show(setupMsg, "Secondary Motion — setup failed",
+                    MessageBox.Show(setupMsg, L10n.Get("Msg_SetupFailedTitle"),
                                     MessageBoxButton.OK, MessageBoxImage.Error);
                     Shutdown(1);
                     return;
                 }
                 dataRoot = Path.Combine(gameRoot, "SecondaryMotion");
-                settings.Save(dataRoot);
+                settings.Save(dataRoot, CurrentLang);
                 MessageBox.Show(
-                    "Installed.\n\nGame data folder: " + dataRoot +
-                    "\nPlugin dll: deployed to " + Path.Combine(gameRoot, "plugin") +
-                    "\n\nStart the game and it will work. You can re-tune everything here.",
+                    L10n.Get("Msg_Installed", dataRoot, Path.Combine(gameRoot, "plugin")),
                     "Secondary Motion", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             diag.AppendLine("data_root: " + dataRoot);
@@ -126,9 +165,7 @@ public partial class App : Application {
                 File.Exists(Path.Combine(gameRoot, "Endfield.exe")) ||
                 File.Exists(Path.Combine(gameRoot, "UnityPlayer.dll"));
             if (!looksLikeGame) {
-                return "The selected folder does not look like the game folder " +
-                       "(no plugins\\, Endfield.exe or UnityPlayer.dll found).\n\n" +
-                       "Pick the folder that contains Endfield.exe.";
+                return L10n.Get("Msg_SetupNotGameFolder");
             }
             Directory.CreateDirectory(pluginDir);
 
@@ -180,7 +217,7 @@ public partial class App : Application {
 
             return null;
         } catch (Exception ex) {
-            return "Setup failed: " + ex.Message;
+            return L10n.Get("Msg_SetupFailed", ex.Message);
         }
     }
 

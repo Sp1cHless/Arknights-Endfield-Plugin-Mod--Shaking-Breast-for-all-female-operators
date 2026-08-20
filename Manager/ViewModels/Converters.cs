@@ -31,6 +31,7 @@ public class DoubleToTextConverter : IValueConverter {
         if (value is string s && double.TryParse(s, System.Globalization.NumberStyles.Float,
                                                  CultureInfo.InvariantCulture, out double d))
             return d;
+        Services.ChangeLog.Append("[UI] rejected input: \"" + value + "\"");
         return Binding.DoNothing;
     }
 }

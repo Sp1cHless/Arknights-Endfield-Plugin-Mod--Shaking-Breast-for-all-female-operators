@@ -87,7 +87,7 @@ public class AppCtx {
     // Reload the database + merged model (after a wizard Save).
     public void Reload() {
         Load();
-        SetApply(ApplyState.Idle, "Database reloaded — " + Characters.Count + " characters");
+        SetApply(ApplyState.Idle, L10n.Get("Msg_DbReloaded", Characters.Count));
     }
 
     // ---- apply ----
@@ -103,7 +103,7 @@ public class AppCtx {
             StartAck(rev);
         } catch (Exception ex) {
             ChangeLog.Append("[Apply] ERROR: " + ex.Message);
-            SetApply(ApplyState.Error, "Apply failed: " + ex.Message);
+            SetApply(ApplyState.Error, L10n.Get("Msg_ApplyFailed", ex.Message));
         }
     }
 
@@ -148,14 +148,14 @@ public class AppCtx {
             Config.Write(rev, Config.ActivePreset, active);
             StartAck(rev);
         } catch (Exception ex) {
-            SetApply(ApplyState.Error, "Switch failed: " + ex.Message);
+            SetApply(ApplyState.Error, L10n.Get("Msg_SwitchFailed", ex.Message));
         }
     }
 
     void StartAck(int rev) {
         _pendingRevision = rev;
         _applyStartMs = Environment.TickCount;
-        SetApply(ApplyState.Applying, "Applying...");
+        SetApply(ApplyState.Applying, L10n.Get("Msg_Applying"));
         _ackTimer.Start();
     }
 
@@ -165,13 +165,13 @@ public class AppCtx {
             _ackTimer.Stop();
             int rev = _pendingRevision;
             _pendingRevision = -1;
-            SetApply(ApplyState.Applied, "Applied ✓ (revision " + rev + ")");
+            SetApply(ApplyState.Applied, L10n.Get("Msg_Applied", rev));
             return;
         }
         if (Environment.TickCount - _applyStartMs > 15000) {
             _ackTimer.Stop();
             _pendingRevision = -1;
-            SetApply(ApplyState.SavedForLater, "Saved — will apply when game starts");
+            SetApply(ApplyState.SavedForLater, L10n.Get("Msg_SavedForLater"));
         }
     }
 

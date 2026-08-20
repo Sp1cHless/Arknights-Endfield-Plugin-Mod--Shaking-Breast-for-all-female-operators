@@ -130,7 +130,7 @@ public class DeveloperViewModel : ViewModelBase, IDisposable {
                         }
                     }
                     ApplyBoneFilter();
-                    ScanStatus = "Done — " + _allBones.Count + " bones dumped (" + Bones.Count + " shown)";
+                    ScanStatus = L10n.Get("Msg_ScanDone", _allBones.Count, Bones.Count);
                     _lastScanChar = "";
                 } catch { }
             }
@@ -142,12 +142,12 @@ public class DeveloperViewModel : ViewModelBase, IDisposable {
     }
 
     void Scan() {
-        if (Character.StartsWith("-")) { ScanStatus = "No character detected — enter the game first"; return; }
+        if (Character.StartsWith("-")) { ScanStatus = L10n.Get("Msg_NoCharDetected"); return; }
         string id = _ctx.Runtime.ReadStatus().Character;
-        if (id.Length == 0) { ScanStatus = "No character id"; return; }
+        if (id.Length == 0) { ScanStatus = L10n.Get("Msg_NoCharId"); return; }
         _lastScanChar = id;
         Bones.Clear();
-        ScanStatus = "Scanning... (check the game)";
+        ScanStatus = L10n.Get("Msg_Scanning");
         _dev.OneShot("bone_scan");
     }
 

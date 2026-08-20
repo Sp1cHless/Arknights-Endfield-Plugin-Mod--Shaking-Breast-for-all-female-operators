@@ -1,7 +1,7 @@
 ﻿<Page x:Class="SecondaryMotion.Manager.Pages.CharactersPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      Title="Characters"
+      Title="{DynamicResource C_characters}"
       Loaded="OnLoaded"
       Unloaded="OnUnloaded">
 
@@ -96,17 +96,17 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel Grid.Column="0">
-                        <TextBlock Text="Characters"
+                        <TextBlock Text="{DynamicResource C_characters}"
                                    FontSize="18"
                                    FontWeight="SemiBold" />
-                        <TextBlock Text="Select a character to edit"
+                        <TextBlock Text="{DynamicResource C_select_a_character_to_edit}"
                                    Foreground="{StaticResource MutedBrush}"
                                    FontSize="9"
                                    Margin="0,2,0,0" />
                     </StackPanel>
 
                     <Button Grid.Column="1"
-                            Content="Refresh"
+                            Content="{DynamicResource C_refresh}"
                             MinWidth="62"
                             Height="26"
                             FontSize="10"
@@ -135,7 +135,7 @@
                                           FallbackValue=Select a character}"
                            FontSize="20"
                            FontWeight="SemiBold" />
-                <TextBlock Text="Character-specific motion settings"
+                <TextBlock Text="{DynamicResource C_character_specific_motion_settings}"
                            Foreground="{StaticResource MutedBrush}"
                            FontSize="9"
                            Margin="0,2,0,0" />
@@ -145,7 +145,7 @@
                         Margin="0,8,0,0"
                         IsEnabled="{Binding HasSelection}">
                     <StackPanel>
-                        <TextBlock Text="Basic"
+                        <TextBlock Text="{DynamicResource C_basic}"
                                    FontSize="12"
                                    FontWeight="SemiBold"
                                    Margin="0,0,0,8" />
@@ -165,7 +165,7 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" Grid.Column="0"
-                                       Text="Display name"
+                                       Text="{DynamicResource C_display_name}"
                                        Style="{StaticResource CompactLabel}" />
                             <TextBox Grid.Row="0" Grid.Column="1"
                                      Height="26"
@@ -176,26 +176,26 @@
                                                     UpdateSourceTrigger=PropertyChanged}" />
 
                             <TextBlock Grid.Row="1" Grid.Column="0"
-                                       Text="Enabled"
+                                       Text="{DynamicResource C_enabled}"
                                        Style="{StaticResource CompactLabel}" />
                             <CheckBox Grid.Row="1" Grid.Column="1"
                                       VerticalAlignment="Center"
                                       IsChecked="{Binding Selected.Enabled}" />
 
                             <TextBlock Grid.Row="2" Grid.Column="0"
-                                       Text="Mode"
+                                       Text="{DynamicResource C_mode}"
                                        Style="{StaticResource CompactLabel}" />
                             <ComboBox Grid.Row="2" Grid.Column="1"
                                       Height="26"
                                       FontSize="10"
                                       SelectedIndex="{Binding Selected.ModeIndex}">
-                                <ComboBoxItem Content="Original (off)" />
-                                <ComboBoxItem Content="Synthetic" />
-                                <ComboBoxItem Content="Amplify Native" />
+                                <ComboBoxItem Content="{DynamicResource C_original_off}" />
+                                <ComboBoxItem Content="{DynamicResource C_synthetic}" />
+                                <ComboBoxItem Content="{DynamicResource C_amplify_native}" />
                             </ComboBox>
 
                             <TextBlock Grid.Row="3" Grid.Column="0"
-                                       Text="ID (dev)"
+                                       Text="{DynamicResource C_id_dev}"
                                        Style="{StaticResource CompactLabel}" />
                             <Border Grid.Row="3" Grid.Column="1"
                                     Background="{StaticResource SoftFillBrush}"
@@ -208,7 +208,7 @@
                             </Border>
 
                             <TextBlock Grid.Row="4" Grid.Column="0"
-                                       Text="Amplitude scale"
+                                       Text="{DynamicResource C_amplitude_scale}"
                                        Style="{StaticResource CompactLabel}" />
                             <TextBox Grid.Row="4" Grid.Column="1"
                                      Height="26"
@@ -228,11 +228,11 @@
                         IsEnabled="{Binding HasSelection}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,6">
-                            <TextBlock Text="Gait"
+                            <TextBlock Text="{DynamicResource C_gait}"
                                        FontSize="12"
                                        FontWeight="SemiBold"
                                        Foreground="{StaticResource AccentBrush}" />
-                            <TextBlock Text="Edit Motion data."
+                            <TextBlock Text="{DynamicResource C_edit_motion_data}"
                                        Style="{StaticResource SectionHintStyle}" />
                         </StackPanel>
 
@@ -252,26 +252,26 @@
 </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" Grid.Column="1"
-                                       Text="Up (degree)"
+                                       Text="{DynamicResource C_up_degree}"
                                        Foreground="{StaticResource MutedBrush}"
                                        FontSize="9"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center" />
                             <TextBlock Grid.Row="0" Grid.Column="2"
-                                       Text="Down (degree)"
+                                       Text="{DynamicResource C_down_degree}"
                                        Foreground="{StaticResource MutedBrush}"
                                        FontSize="9"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center" />
                             <TextBlock Grid.Row="0" Grid.Column="3"
-                                       Text="Frequency (Hz)"
+                                       Text="{DynamicResource C_frequency_hz}"
                                        Foreground="{StaticResource MutedBrush}"
                                        FontSize="9"
                                        HorizontalAlignment="Center"
                                        VerticalAlignment="Center" />
 
                             <TextBlock Grid.Row="1" Grid.Column="0"
-                                       Text="Walk"
+                                       Text="{DynamicResource C_walk}"
                                        Style="{StaticResource CompactLabel}" />
                             <TextBox Grid.Row="1" Grid.Column="1"
                                      Height="26" Margin="3"
@@ -293,7 +293,7 @@
                                      Text="{Binding Selected.WalkFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                             <TextBlock Grid.Row="2" Grid.Column="0"
-                                       Text="Run"
+                                       Text="{DynamicResource C_run}"
                                        Style="{StaticResource CompactLabel}" />
                             <TextBox Grid.Row="2" Grid.Column="1"
                                      Height="26" Margin="3"
@@ -315,7 +315,7 @@
                                      Text="{Binding Selected.RunFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                             <TextBlock Grid.Row="3" Grid.Column="0"
-                                       Text="Sprint"
+                                       Text="{DynamicResource C_sprint}"
                                        Style="{StaticResource CompactLabel}" />
                             <TextBox Grid.Row="3" Grid.Column="1"
                                      Height="26" Margin="3"
@@ -336,7 +336,7 @@
                                      TextAlignment="Right"
                                      Text="{Binding Selected.SprintFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                             <TextBlock Grid.Row="4" Grid.Column="0"
-                                       Text="Zipline"
+                                       Text="{DynamicResource C_zipline}"
                                        Style="{StaticResource CompactLabel}" />
                         <TextBox Grid.Row="4" Grid.Column="1"
                                      Height="26" Margin="3"
@@ -366,11 +366,11 @@
                         IsEnabled="{Binding HasSelection}">
                     <StackPanel>
                         <StackPanel Orientation="Horizontal" Margin="0,0,0,7">
-                            <TextBlock Text="Advanced"
+                            <TextBlock Text="{DynamicResource C_advanced}"
                                        FontSize="12"
                                        FontWeight="SemiBold"
                                        Foreground="{StaticResource AccentBrush}" />
-                            <TextBlock Text="Usually Don't Touch"
+                            <TextBlock Text="{DynamicResource C_usually_don_t_touch}"
                                        Style="{StaticResource SectionHintStyle}" />
                         </StackPanel>
 
@@ -390,36 +390,36 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock Grid.Row="0" Grid.Column="0"
-                                       Text="Axis"
+                                       Text="{DynamicResource C_axis}"
                                        Style="{StaticResource CompactLabel}" />
                             <ComboBox Grid.Row="0" Grid.Column="1"
                                       Height="26"
                                       FontSize="10"
                                       SelectedIndex="{Binding Selected.AxisIndex}">
-                                <ComboBoxItem Content="Auto" />
-                                <ComboBoxItem Content="X" />
-                                <ComboBoxItem Content="Y" />
-                                <ComboBoxItem Content="Z" />
+                                <ComboBoxItem Content="{DynamicResource C_auto}" />
+                                <ComboBoxItem Content="{DynamicResource C_x}" />
+                                <ComboBoxItem Content="{DynamicResource C_y}" />
+                                <ComboBoxItem Content="{DynamicResource C_z}" />
                             </ComboBox>
 
                             <TextBlock Grid.Row="1" Grid.Column="0"
-                                       Text="Direction"
+                                       Text="{DynamicResource C_direction}"
                                        Style="{StaticResource CompactLabel}" />
                             <ComboBox Grid.Row="1" Grid.Column="1"
                                       Height="26"
                                       FontSize="10"
                                       SelectedIndex="{Binding Selected.SignIndex}">
-                                <ComboBoxItem Content="+" />
-                                <ComboBoxItem Content="-" />
+                                <ComboBoxItem Content="{DynamicResource C_x_2}" />
+                                <ComboBoxItem Content="{DynamicResource C_x_3}" />
                             </ComboBox>
 
                             <!-- Env attack tau -->
                             <StackPanel Grid.Row="2" Grid.Column="0"
                                         VerticalAlignment="Center"
-                                        ToolTip="Env attack tau — smooths amplitude across gait/state transitions, including run→walk and zipline transitions.">
-                                <TextBlock Text="Transition smoothing"
+                                        ToolTip="{DynamicResource C_env_attack_tau_smooths_amplitude_acr}">
+                                <TextBlock Text="{DynamicResource C_transition_smoothing}"
                                            Style="{StaticResource AdvancedParamTitle}" />
-                                <TextBlock Text="Higher = smoother transitions · Lower = more responsive"
+                                <TextBlock Text="{DynamicResource C_higher_smoother_transitions_lower_mo}"
                                            Style="{StaticResource AdvancedParamHint}" />
                             </StackPanel>
                             <TextBox Grid.Row="2" Grid.Column="1"
@@ -428,16 +428,16 @@
                                      VerticalAlignment="Center"
                                      VerticalContentAlignment="Center"
                                      TextAlignment="Right"
-                                     ToolTip="Env attack tau"
+                                     ToolTip="{DynamicResource C_env_attack_tau}"
                                      Text="{Binding Selected.EnvAttack, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                             <!-- Env freq tau -->
                             <StackPanel Grid.Row="3" Grid.Column="0"
                                         VerticalAlignment="Center"
-                                        ToolTip="Env freq tau — smooths changes in motion frequency.">
-                                <TextBlock Text="Frequency smoothing"
+                                        ToolTip="{DynamicResource C_env_freq_tau_smooths_changes_in_moti}">
+                                <TextBlock Text="{DynamicResource C_frequency_smoothing}"
                                            Style="{StaticResource AdvancedParamTitle}" />
-                                <TextBlock Text="Higher = slower frequency changes · Lower = quicker response"
+                                <TextBlock Text="{DynamicResource C_higher_slower_frequency_changes_lowe}"
                                            Style="{StaticResource AdvancedParamHint}" />
                             </StackPanel>
                             <TextBox Grid.Row="3" Grid.Column="1"
@@ -446,16 +446,16 @@
                                      VerticalAlignment="Center"
                                      VerticalContentAlignment="Center"
                                      TextAlignment="Right"
-                                     ToolTip="Env freq tau"
+                                     ToolTip="{DynamicResource C_env_freq_tau}"
                                      Text="{Binding Selected.EnvFreq, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                             <!-- Env to-idle tau -->
                             <StackPanel Grid.Row="4" Grid.Column="0"
                                         VerticalAlignment="Center"
-                                        ToolTip="Env to-idle tau — dedicated stop/tail smoothing. Triggered when the clip name contains &quot;stop&quot; or &quot;_to_idle&quot;.">
-                                <TextBlock Text="Stop smoothing"
+                                        ToolTip="{DynamicResource C_env_to_idle_tau_dedicated_stop_tail_}">
+                                <TextBlock Text="{DynamicResource C_stop_smoothing}"
                                            Style="{StaticResource AdvancedParamTitle}" />
-                                <TextBlock Text="Stop / to-idle only · Higher = gentler stop · Lower = sharper stop"
+                                <TextBlock Text="{DynamicResource C_stop_to_idle_only_higher_gentler_sto}"
                                            Style="{StaticResource AdvancedParamHint}" />
                             </StackPanel>
                             <TextBox Grid.Row="4" Grid.Column="1"
@@ -464,11 +464,11 @@
                                      VerticalAlignment="Center"
                                      VerticalContentAlignment="Center"
                                      TextAlignment="Right"
-                                     ToolTip="Env to-idle tau — clips containing &quot;stop&quot; or &quot;_to_idle&quot;"
+                                     ToolTip="{DynamicResource C_env_to_idle_tau_clips_containing_quo}"
                                      Text="{Binding Selected.EnvIdle, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
 
                             <TextBlock Grid.Row="5" Grid.Column="0"
-                                       Text="Native amplify"
+                                       Text="{DynamicResource C_native_amplify}"
                                        Style="{StaticResource CompactLabel}" />
                             <TextBox Grid.Row="5" Grid.Column="1"
                                      Height="26"
@@ -478,7 +478,7 @@
                                      Text="{Binding Selected.NativeFactor, Mode=TwoWay, Converter={StaticResource DoubleToText}}" />
                         </Grid>
 
-                        <CheckBox Content="Jump (legacy landing damped)"
+                        <CheckBox Content="{DynamicResource C_jump_legacy_landing_damped}"
                                   Margin="0,7,0,0"
                                   FontSize="10"
                                   Foreground="Black"
@@ -490,12 +490,12 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="0,10,0,2"
                             IsEnabled="{Binding HasSelection}">
-                    <Button Content="Apply"
+                    <Button Content="{DynamicResource C_apply}"
                             Width="108"
                             Height="28"
                             FontSize="10"
                             Command="{Binding ApplyCommand}" />
-                    <Button Content="Delete from preset"
+                    <Button Content="{DynamicResource C_delete_from_preset}"
                             Width="126"
                             Height="28"
                             FontSize="10"

@@ -9,8 +9,8 @@
         <TextBlock Text="{Binding PromptText}" Margin="0,0,0,8" />
         <TextBox x:Name="Input" Text="{Binding Answer, UpdateSourceTrigger=PropertyChanged}" />
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,12,0,0">
-            <ui:Button Content="OK" Appearance="Primary" Width="80" Click="Ok_Click" />
-            <ui:Button Content="Cancel" Width="80" Margin="8,0,0,0" Click="Cancel_Click" />
+            <ui:Button Content="{DynamicResource Msg_Ok}" Appearance="Primary" Width="80" Click="Ok_Click" />
+            <ui:Button Content="{DynamicResource Msg_Cancel}" Width="80" Margin="8,0,0,0" Click="Cancel_Click" />
         </StackPanel>
     </StackPanel>
 </Window>
